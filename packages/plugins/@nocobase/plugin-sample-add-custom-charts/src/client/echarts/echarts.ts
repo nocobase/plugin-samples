@@ -21,7 +21,7 @@ export class ECharts extends Chart {
     super({
       name,
       title,
-      component: ReactECharts,
+      Component: ReactECharts,
       config: ['xField', 'yField', 'seriesField', ...(config || [])],
     });
     this.series = series;
