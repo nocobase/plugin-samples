@@ -13,6 +13,15 @@
       "@nocobase-sample/plugin-add-page": [
         "packages/plugins/@nocobase-sample/plugin-add-page/src"
       ],
+      "@nocobase-sample/plugin-add-setting-page-layout-routes/client": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-layout-routes/src/client"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-layout-routes/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-layout-routes/package.json"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-layout-routes": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-layout-routes/src"
+      ],
       "@nocobase-sample/plugin-add-setting-page-single-route/client": [
         "packages/plugins/@nocobase-sample/plugin-add-setting-page-single-route/src/client"
       ],
