@@ -12,6 +12,15 @@
       ],
       "@nocobase-sample/plugin-add-page": [
         "packages/plugins/@nocobase-sample/plugin-add-page/src"
+      ],
+      "@nocobase-sample/plugin-replace-page/client": [
+        "packages/plugins/@nocobase-sample/plugin-replace-page/src/client"
+      ],
+      "@nocobase-sample/plugin-replace-page/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-replace-page/package.json"
+      ],
+      "@nocobase-sample/plugin-replace-page": [
+        "packages/plugins/@nocobase-sample/plugin-replace-page/src"
       ]
     }
   }
