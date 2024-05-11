@@ -4,14 +4,50 @@
       "@@/*": [
         ".dumi/tmp/*"
       ],
-      "@nocobase/plugin-sample-initializer-selector-item/client": [
-        "packages/plugins/@nocobase/plugin-sample-initializer-selector-item/src/client"
+      "@nocobase-sample/plugin-add-page/client": [
+        "packages/plugins/@nocobase-sample/plugin-add-page/src/client"
       ],
-      "@nocobase/plugin-sample-initializer-selector-item/package.json": [
-        "packages/plugins/@nocobase/plugin-sample-initializer-selector-item/package.json"
+      "@nocobase-sample/plugin-add-page/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-add-page/package.json"
       ],
-      "@nocobase/plugin-sample-initializer-selector-item": [
-        "packages/plugins/@nocobase/plugin-sample-initializer-selector-item/src"
+      "@nocobase-sample/plugin-add-page": [
+        "packages/plugins/@nocobase-sample/plugin-add-page/src"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-layout-routes/client": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-layout-routes/src/client"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-layout-routes/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-layout-routes/package.json"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-layout-routes": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-layout-routes/src"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-single-route/client": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-single-route/src/client"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-single-route/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-single-route/package.json"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-single-route": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-single-route/src"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-tabs-routes/client": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-tabs-routes/src/client"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-tabs-routes/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-tabs-routes/package.json"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-tabs-routes": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-tabs-routes/src"
+      ],
+      "@nocobase-sample/plugin-replace-page/client": [
+        "packages/plugins/@nocobase-sample/plugin-replace-page/src/client"
+      ],
+      "@nocobase-sample/plugin-replace-page/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-replace-page/package.json"
+      ],
+      "@nocobase-sample/plugin-replace-page": [
+        "packages/plugins/@nocobase-sample/plugin-replace-page/src"
       ]
     }
   }
