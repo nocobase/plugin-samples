@@ -22,6 +22,15 @@
       "@nocobase-sample/plugin-add-setting-page-single-route": [
         "packages/plugins/@nocobase-sample/plugin-add-setting-page-single-route/src"
       ],
+      "@nocobase-sample/plugin-add-setting-page-tabs-routes/client": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-tabs-routes/src/client"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-tabs-routes/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-tabs-routes/package.json"
+      ],
+      "@nocobase-sample/plugin-add-setting-page-tabs-routes": [
+        "packages/plugins/@nocobase-sample/plugin-add-setting-page-tabs-routes/src"
+      ],
       "@nocobase-sample/plugin-replace-page/client": [
         "packages/plugins/@nocobase-sample/plugin-replace-page/src/client"
       ],

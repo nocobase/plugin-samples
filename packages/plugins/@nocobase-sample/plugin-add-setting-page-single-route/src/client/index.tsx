@@ -9,7 +9,7 @@ const MySettingPage = () => <div>Hello Setting page</div>;
 export class PluginAddSettingPageSingleRouteClient extends Plugin {
   async load() {
     this.app.pluginSettingsManager.add(name, {
-      title: 'My Plugin Setting',
+      title: 'Single Route',
       icon: 'ApiOutlined',
       Component: MySettingPage,
     });
