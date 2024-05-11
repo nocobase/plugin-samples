@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@@/*": [
+        ".dumi/tmp/*"
+      ],
+      "@nocobase/plugin-sample-initializer-selector-item/client": [
+        "packages/plugins/@nocobase/plugin-sample-initializer-selector-item/src/client"
+      ],
+      "@nocobase/plugin-sample-initializer-selector-item/package.json": [
+        "packages/plugins/@nocobase/plugin-sample-initializer-selector-item/package.json"
+      ],
+      "@nocobase/plugin-sample-initializer-selector-item": [
+        "packages/plugins/@nocobase/plugin-sample-initializer-selector-item/src"
+      ]
+    }
+  }
+}
