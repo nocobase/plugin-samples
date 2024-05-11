@@ -3,6 +3,15 @@
     "paths": {
       "@@/*": [
         ".dumi/tmp/*"
+      ],
+      "@nocobase-sample/plugin-add-page/client": [
+        "packages/plugins/@nocobase-sample/plugin-add-page/src/client"
+      ],
+      "@nocobase-sample/plugin-add-page/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-add-page/package.json"
+      ],
+      "@nocobase-sample/plugin-add-page": [
+        "packages/plugins/@nocobase-sample/plugin-add-page/src"
       ]
     }
   }

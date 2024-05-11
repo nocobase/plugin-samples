@@ -22,3 +22,4 @@ dist/
 /storage/.app-dev
 /storage/playwright
 /storage/app.watch.ts
+/storage/tar
