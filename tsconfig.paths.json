@@ -48,6 +48,15 @@
       ],
       "@nocobase-sample/plugin-replace-page": [
         "packages/plugins/@nocobase-sample/plugin-replace-page/src"
+      ],
+      "@nocobase-sample/plugin-setting-form/client": [
+        "packages/plugins/@nocobase-sample/plugin-setting-form/src/client"
+      ],
+      "@nocobase-sample/plugin-setting-form/package.json": [
+        "packages/plugins/@nocobase-sample/plugin-setting-form/package.json"
+      ],
+      "@nocobase-sample/plugin-setting-form": [
+        "packages/plugins/@nocobase-sample/plugin-setting-form/src"
       ]
     }
   }
