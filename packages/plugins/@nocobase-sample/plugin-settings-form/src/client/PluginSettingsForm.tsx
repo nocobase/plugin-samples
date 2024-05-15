@@ -1,34 +1,35 @@
+import React from 'react';
+import { useMemo } from 'react';
+import { App as AntdApp } from 'antd';
 import { createForm } from '@formily/core';
 import { useForm } from '@formily/react';
-import {
-  ActionProps,
-  DataBlockProviderProps,
-  ExtendCollectionsProvider,
-  ISchema,
-  SchemaComponent,
-  useCollection,
-  useCollectionRecordData,
-  useDataBlockResource,
-} from '@nocobase/client';
 import { uid } from '@nocobase/utils/client';
-import { App as AntdApp } from 'antd';
-import React, { useMemo } from 'react';
-import { useCustomContext } from './CustomContextProvider';
+import { ActionProps, ISchema, useCollection, useCollectionRecordData, useDataBlockResource, ExtendCollectionsProvider, SchemaComponent } from '@nocobase/client';
 
-// TODO: 现在这个需要 client 这里手写
-const sampleTables1 = {
-  name: 'sampleTables1',
+import { usePluginSettingsFormRequest } from './PluginSettingsFormProvider';
+
+const mapConfigurationCollection = {
+  name: 'mapConfiguration',
   filterTargetKey: 'id',
   fields: [
     {
       type: 'string',
+      name: 'key',
       interface: 'input',
-      name: 'title',
       uiSchema: {
-        // BUG: 这里的参数 CollectionField 那里没正确处理
         type: 'string',
         title: 'Title',
-        default: 'aaa',
+        required: true,
+        'x-component': 'Input',
+      },
+    },
+    {
+      type: 'string',
+      name: 'secret',
+      interface: 'input',
+      uiSchema: {
+        type: 'string',
+        title: 'Secret',
         required: true,
         'x-component': 'Input',
       },
@@ -38,55 +39,44 @@ const sampleTables1 = {
 
 const schema: ISchema = {
   type: 'void',
-  // TODO: 这个 name 需要优化，根节点这个需要随机处理，以防冲突
   name: uid(),
+  'x-component': 'CardItem',
+  'x-decorator': 'DataBlockProvider',
+  'x-decorator-props': {
+    collection: mapConfigurationCollection.name,
+    action: 'get',
+  },
   properties: {
-    data: {
+    form: {
       type: 'void',
-      'x-component': 'CardItem',
-      'x-decorator': 'DataBlockProvider',
-      'x-use-decorator-props': 'useDataBlockProviderProps',
+      'x-component': 'FormV2',
+      'x-use-component-props': 'useFormBlockProps',
       properties: {
-        test: {
+        key: {
+          'x-decorator': 'FormItem',
+          'x-component': 'CollectionField',
+        },
+        secret: {
+          'x-decorator': 'FormItem',
+          'x-component': 'CollectionField',
+        },
+        footer: {
           type: 'void',
-          'x-component': 'FormV2',
-          'x-use-component-props': 'useFormBlockProps',
-          properties: {
-            title: {
-              'x-decorator': 'FormItem',
-              'x-component': 'CollectionField',
-            },
-            button: {
-              type: 'void',
-              'x-component': 'Action',
-              title: 'Submit',
-              'x-use-component-props': 'useSubmitActionProps',
-            },
-          },
+          'x-component': 'Action',
+          title: 'Submit',
+          'x-use-component-props': 'useSubmitActionProps',
         },
       },
     },
   },
 };
 
-const useDataBlockProviderProps = (): DataBlockProviderProps => {
-  const result = useCustomContext();
-  // TODO: 实际情况，数据并不是直接从 sampleTables1:get 获取的，而是从上下文里获取
-  return {
-    collection: 'sampleTables1',
-    action: 'get', // BUG: 这里不应该有 get，因为数据是通过 record 对接的
-    record: result.data?.['data'],
-  };
-};
-
 const useFormBlockProps = () => {
   const recordData = useCollectionRecordData();
-  // BUG: recordData 的更新导致 Form 重渲染，title 等参数都丢失了
   const form = useMemo(
-    () =>
-      createForm({
-        initialValues: recordData,
-      }),
+    () => createForm({
+      values: recordData,
+    }),
     [recordData],
   );
   return {
@@ -96,11 +86,10 @@ const useFormBlockProps = () => {
 
 const useSubmitActionProps = (): ActionProps => {
   const form = useForm();
-  // TODO: AntdApp 这个用法应该合并到内核里
   const { message } = AntdApp.useApp();
   const collection = useCollection();
   const resource = useDataBlockResource();
-  const result = useCustomContext();
+  const globalSettingsFormRequest = usePluginSettingsFormRequest();
   return {
     type: 'primary',
     htmlType: 'submit',
@@ -111,17 +100,16 @@ const useSubmitActionProps = (): ActionProps => {
         values,
         filterKeys: [collection.filterTargetKey],
       });
-      // 更新上下文
-      result.refresh();
-      message.success('OK');
+      await globalSettingsFormRequest.runAsync();
+      message.success('Saved successfully!');
     },
   };
 };
 
 export const PluginSettingsForm = () => {
   return (
-    <ExtendCollectionsProvider collections={[sampleTables1]}>
-      <SchemaComponent schema={schema} scope={{ useDataBlockProviderProps, useFormBlockProps, useSubmitActionProps }} />
+    <ExtendCollectionsProvider collections={[mapConfigurationCollection]}>
+      <SchemaComponent schema={schema} scope={{ useFormBlockProps, useSubmitActionProps }} />
     </ExtendCollectionsProvider>
   );
 };

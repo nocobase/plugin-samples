@@ -1,18 +1,25 @@
 import { Plugin } from '@nocobase/client';
 // @ts-ignore
 import { name } from '../../package.json';
-import { CustomContextProvider } from './CustomContextProvider';
-import { PluginSettingsForm } from './PluginSettingsForm';
+import { PluginSettingsForm } from './PluginSettingsForm'
+import { PluginSettingsFormPage } from './PluginSettingsFormPage'
+import { PluginSettingsFormProvider } from './PluginSettingsFormProvider'
 
-export class PluginSettingsFormClient extends Plugin {
+export class PluginSettingFormClient extends Plugin {
   async load() {
-    this.app.addProvider(CustomContextProvider);
     this.app.pluginSettingsManager.add(name, {
-      title: 'Single Route',
-      icon: 'ApiOutlined',
+      title: 'Plugin Settings Form',
+      icon: 'FormOutlined',
       Component: PluginSettingsForm,
     });
+
+    this.app.router.add(`admin.${name}-page`, {
+      path: '/admin/plugin-settings-form-page',
+      Component: PluginSettingsFormPage,
+    })
+
+    this.app.addProvider(PluginSettingsFormProvider)
   }
 }
 
-export default PluginSettingsFormClient;
+export default PluginSettingFormClient;

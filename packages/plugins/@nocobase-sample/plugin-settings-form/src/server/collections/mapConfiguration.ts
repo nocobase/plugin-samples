@@ -1,11 +1,15 @@
 import { defineCollection } from '@nocobase/database';
 
 export default defineCollection({
-  name: 'sampleTables1',
+  name: 'mapConfiguration',
   fields: [
     {
       type: 'string',
-      name: 'title',
+      name: 'key',
+    },
+    {
+      type: 'string',
+      name: 'secret',
     },
   ],
 });
