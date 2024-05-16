@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { App as AntdApp } from 'antd';
 import { createForm } from '@formily/core';
 import { useForm } from '@formily/react';
-import { uid } from '@nocobase/utils/client';
+import { uid } from '@formily/shared'
 import { ActionProps, ISchema, useCollection, useCollectionRecordData, useDataBlockResource, ExtendCollectionsProvider, SchemaComponent } from '@nocobase/client';
 
 import { usePluginSettingsFormRequest } from './PluginSettingsFormProvider';
