@@ -1,5 +1,5 @@
 {
-  "name": "@nocobase-sample/plugin-provider-render",
+  "name": "@nocobase-sample/plugin-provider-content",
   "version": "0.1.0",
   "main": "dist/server/index.js",
   "dependencies": {},
