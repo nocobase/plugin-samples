@@ -9,7 +9,7 @@ import { ActionProps, ISchema, useCollection, useCollectionRecordData, useDataBl
 import { usePluginSettingsFormRequest } from './PluginSettingsFormProvider';
 
 const mapConfigurationCollection = {
-  name: 'mapConfiguration',
+  name: 'samplesMapConfiguration',
   filterTargetKey: 'id',
   fields: [
     {
@@ -75,7 +75,7 @@ const useFormBlockProps = () => {
   const recordData = useCollectionRecordData();
   const form = useMemo(
     () => createForm({
-      values: recordData,
+      initialValues: recordData,
     }),
     [recordData],
   );

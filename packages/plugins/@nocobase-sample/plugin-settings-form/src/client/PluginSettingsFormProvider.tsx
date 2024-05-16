@@ -5,7 +5,7 @@ const PluginSettingsFormContext = createContext<UseRequestResult<{ data?: { key:
 
 export const PluginSettingsFormProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   const request = useRequest<{ data?: { key: string; secret: string } }>({
-    url: 'mapConfiguration:get',
+    url: 'samplesMapConfiguration:get',
   });
 
   console.log('PluginSettingsFormProvider', request.data?.data);

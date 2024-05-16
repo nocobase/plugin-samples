@@ -3,7 +3,7 @@ import React from 'react';
 
 export const PluginSettingsTablePage = () => {
   const { data, loading } = useRequest<{ data?: any[] }>({
-    url: 'emailTemplates:list',
+    url: 'samplesEmailTemplates:list',
   });
 
   if (loading) return null;

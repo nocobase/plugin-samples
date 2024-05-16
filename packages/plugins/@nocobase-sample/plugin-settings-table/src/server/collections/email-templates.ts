@@ -1,7 +1,7 @@
 import { defineCollection } from '@nocobase/database';
 
 export default defineCollection({
-  name: 'emailTemplates',
+  name: 'samplesEmailTemplates',
   fields: [
     {
       type: 'string',

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { ActionProps, ISchema, useActionContext, useCollectionRecord, useCollectionRecordData, useDataBlockRequest, useDataBlockResource } from '@nocobase/client';
+import { ActionProps, ISchema, useActionContext, useCollection, useCollectionRecord, useCollectionRecordData, useDataBlockRequest, useDataBlockResource } from '@nocobase/client';
 import { uid } from '@formily/shared'
 import { ExtendCollectionsProvider, SchemaComponent } from '@nocobase/client';
 import { App as AntdApp } from 'antd';
@@ -7,8 +7,8 @@ import { createForm } from '@formily/core';
 import { useForm } from '@formily/react';
 import { usePluginSettingsTableRequest } from './PluginSettingsTableProvider';
 
-const emailTemplatesCollection = {
-  name: 'emailTemplates',
+const samplesEmailTemplatesCollection = {
+  name: 'samplesEmailTemplates',
   filterTargetKey: 'id',
   fields: [
     {
@@ -42,20 +42,17 @@ const useSubmitActionProps = () => {
   const form = useForm();
   const resource = useDataBlockResource();
   const { runAsync } = useDataBlockRequest();
+  const collection = useCollection();
   const globalSettingsTableRequest = usePluginSettingsTableRequest();
   return {
     type: 'primary',
     async onClick() {
       await form.submit();
       const values = form.values;
-      if (values.id) {
-        await resource.update({
-          filterByTk: values.id,
-          values
-        })
-      } else {
-        await resource.create({ values })
-      }
+      await resource.updateOrCreate({
+        values,
+        filterKeys: [collection.filterTargetKey],
+      });
       await runAsync()
       await globalSettingsTableRequest.runAsync();
       message.success('Saved successfully!');
@@ -85,6 +82,7 @@ function useDeleteActionProps(): ActionProps {
   const resource = useDataBlockResource();
   const { runAsync } = useDataBlockRequest();
   const globalSettingsTableRequest = usePluginSettingsTableRequest();
+  const collection = useCollection();
   return {
     confirm: {
       title: 'Delete',
@@ -92,7 +90,7 @@ function useDeleteActionProps(): ActionProps {
     },
     async onClick() {
       await resource.destroy({
-        filterByTk: record.id
+        filterByTk: record[collection.filterTargetKey]
       });
       await runAsync();
       await globalSettingsTableRequest.runAsync();
@@ -107,7 +105,7 @@ const schema: ISchema = {
   'x-component': 'CardItem',
   'x-decorator': 'TableBlockProvider',
   'x-decorator-props': {
-    collection: emailTemplatesCollection.name,
+    collection: samplesEmailTemplatesCollection.name,
     action: 'list',
     showIndex: true,
     dragSort: false,
@@ -283,7 +281,7 @@ const schema: ISchema = {
 
 export const PluginSettingsTable = () => {
   return (
-    <ExtendCollectionsProvider collections={[emailTemplatesCollection]}>
+    <ExtendCollectionsProvider collections={[samplesEmailTemplatesCollection]}>
       <SchemaComponent schema={schema} scope={{ useSubmitActionProps, useEditFormProps, useDeleteActionProps }} />
     </ExtendCollectionsProvider>
   );

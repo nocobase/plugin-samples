@@ -5,7 +5,7 @@ const PluginSettingsTableContext = createContext<UseRequestResult<{ data?: any[]
 
 export const PluginSettingsTableProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   const request = useRequest<{ data?: any[] }>({
-    url: 'emailTemplates:list',
+    url: 'samplesEmailTemplates:list',
   });
 
   console.log('PluginSettingsTableProvider', request.data?.data);

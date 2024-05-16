@@ -3,7 +3,7 @@ import React from 'react';
 
 export const PluginSettingsFormPage = () => {
   const { data, loading } = useRequest<{ data?: { key: string; secret: string } }>({
-    url: 'mapConfiguration:get',
+    url: 'samplesMapConfiguration:get',
   });
 
   if (loading) return null;
