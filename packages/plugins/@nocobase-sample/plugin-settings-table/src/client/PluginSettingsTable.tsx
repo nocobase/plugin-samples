@@ -49,10 +49,16 @@ const useSubmitActionProps = () => {
     async onClick() {
       await form.submit();
       const values = form.values;
-      await resource.updateOrCreate({
-        values,
-        filterKeys: [collection.filterTargetKey],
-      });
+      if (values[collection.filterTargetKey]) {
+        await resource.update({
+          values,
+          filterByTk: values[collection.filterTargetKey],
+        });
+      } else {
+        await resource.create({
+          values,
+        });
+      }
       await runAsync()
       await globalSettingsTableRequest.runAsync();
       message.success('Saved successfully!');

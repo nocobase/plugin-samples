@@ -53,10 +53,12 @@ const schema: ISchema = {
       'x-use-component-props': 'useFormBlockProps',
       properties: {
         key: {
+          title: 'Title',
           'x-decorator': 'FormItem',
           'x-component': 'CollectionField',
         },
         secret: {
+          title: 'Secret',
           'x-decorator': 'FormItem',
           'x-component': 'CollectionField',
         },
