@@ -1,7 +1,7 @@
 import { Plugin } from '@nocobase/client';
 import { CarouselBlock, CarouselInitializerItem, carouselSettings } from './CarouselBlock';
 
-export class PluginAddInitializerItemToBlockClient extends Plugin {
+export class PluginSimpleBlockClient extends Plugin {
   async load() {
     this.app.schemaInitializerManager.addItem('page:addBlock', `otherBlocks.${CarouselInitializerItem.name}`, CarouselInitializerItem)
     this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `otherBlocks.${CarouselInitializerItem.name}`, CarouselInitializerItem)
@@ -10,4 +10,4 @@ export class PluginAddInitializerItemToBlockClient extends Plugin {
   }
 }
 
-export default PluginAddInitializerItemToBlockClient;
+export default PluginSimpleBlockClient;

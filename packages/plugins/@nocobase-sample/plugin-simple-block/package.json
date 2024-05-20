@@ -1,5 +1,5 @@
 {
-  "name": "@nocobase-sample/plugin-add-initializer-item-to-block",
+  "name": "@nocobase-sample/plugin-simple",
   "version": "0.1.0",
   "main": "dist/server/index.js",
   "dependencies": {},
