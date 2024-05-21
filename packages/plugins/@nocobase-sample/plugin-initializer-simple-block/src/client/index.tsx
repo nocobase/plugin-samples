@@ -1,7 +1,7 @@
 import { Plugin } from '@nocobase/client';
 import { ImageBlock, imageBlockSettings, imageInitializerItem } from './ImageBlock';
 
-export class PluginInitializerBlockClient extends Plugin {
+export class PluginInitializerSimpleBlockClient extends Plugin {
   async load() {
     this.app.addComponents({ ImageBlock })
     this.app.schemaSettingsManager.add(imageBlockSettings)
@@ -12,4 +12,4 @@ export class PluginInitializerBlockClient extends Plugin {
   }
 }
 
-export default PluginInitializerBlockClient;
+export default PluginInitializerSimpleBlockClient;
