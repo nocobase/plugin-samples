@@ -1,15 +1,19 @@
-import React from 'react';
-import { SchemaInitializerItemType, SchemaSettings, useCollection, useDataBlockRequest, useSchemaInitializer } from '@nocobase/client'
+import React, { FC } from 'react';
+import { SchemaInitializerItemType, SchemaSettings, useCollection, useDataBlockRequest, useSchemaInitializer, withDynamicSchemaProps } from '@nocobase/client'
 import { CodeOutlined } from '@ant-design/icons';
 
-export const InfoBlock = () => {
-  const collection = useCollection();
-  const { data } = useDataBlockRequest();
-  return <div>
-    <div>collection: {collection.name}</div>
-    <div>data list: <pre>{JSON.stringify(data?.data, null, 2)}</pre></div>
-  </div>
+export interface InfoBlockProps {
+  collectionName: string;
+  data?: any[];
+  loading?: boolean;
 }
+
+export const InfoBlock: FC<InfoBlockProps> = withDynamicSchemaProps(({ collectionName, data }) => {
+  return <div>
+    <div>collection: {collectionName}</div>
+    <div>data list: <pre>{JSON.stringify(data, null, 2)}</pre></div>
+  </div>
+}, { displayName: 'InfoBlock' })
 
 export const infoBlockSettings = new SchemaSettings({
   name: 'blockSettings:info',
@@ -21,7 +25,18 @@ export const infoBlockSettings = new SchemaSettings({
   ]
 })
 
-function getInfoBlockSchema({ dataSource, collection }) {
+export function useInfoBlockProps() {
+  const collection = useCollection();
+  const { data, loading } = useDataBlockRequest();
+
+  return {
+    collectionName: collection.name,
+    data: data?.data,
+    loading: loading
+  }
+}
+
+export function getInfoBlockSchema({ dataSource = 'main', collection }) {
   return {
     type: 'void',
     'x-decorator': 'DataBlockProvider',
@@ -36,6 +51,7 @@ function getInfoBlockSchema({ dataSource, collection }) {
       info: {
         type: 'void',
         'x-component': 'InfoBlock',
+        'x-use-component-props': 'useInfoBlockProps',
       }
     }
   }

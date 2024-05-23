@@ -1,14 +1,14 @@
-import React from 'react';
-import { ISchema, SchemaInitializerItemType, SchemaSettings, useSchemaInitializer } from '@nocobase/client';
+import React, { FC } from 'react';
+import { ISchema, SchemaInitializerItemType, SchemaSettings, useSchemaInitializer, withDynamicSchemaProps } from '@nocobase/client';
 
-export const ImageBlock = () => {
-  return <div style={{ height: 500 }}>
+export const ImageBlock: FC<{ height?: number }> = withDynamicSchemaProps(({ height = 500 }) => {
+  return <div style={{ height }}>
     <img
       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       src="https://picsum.photos/2000/500"
     />
   </div>
-}
+}, { displayName: 'ImageBlock' })
 
 export const imageBlockSettings = new SchemaSettings({
   name: 'blockSettings:image',
@@ -20,6 +20,13 @@ export const imageBlockSettings = new SchemaSettings({
   ]
 });
 
+export const imageBlockSchema: ISchema = {
+  type: 'void',
+  'x-decorator': 'CardItem',
+  'x-component': 'ImageBlock',
+  'x-settings': imageBlockSettings.name
+};
+
 export const imageInitializerItem: SchemaInitializerItemType = {
   type: 'item',
   name: 'ImageBlock',
@@ -29,12 +36,6 @@ export const imageInitializerItem: SchemaInitializerItemType = {
     return {
       title: 'Image',
       onClick: () => {
-        const imageBlockSchema: ISchema = {
-          type: 'void',
-          'x-decorator': 'CardItem',
-          'x-component': 'ImageBlock',
-          'x-settings': imageBlockSettings.name
-        };
 
         insert(imageBlockSchema);
       },
