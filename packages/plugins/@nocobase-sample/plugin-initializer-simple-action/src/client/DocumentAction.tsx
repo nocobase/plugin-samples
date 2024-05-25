@@ -4,6 +4,7 @@ import { ISchema, SchemaInitializerItemType, SchemaSettings, useSchemaInitialize
 export function useDocumentActionProps() {
   const fieldSchema = useFieldSchema();
   return {
+    type: 'primary',
     onClick() {
       window.open(fieldSchema['x-doc-url'])
     }
