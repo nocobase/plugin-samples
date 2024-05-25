@@ -18,9 +18,6 @@ export const createDocumentActionSchema = (blockComponent: string): ISchema & { 
     'x-settings': documentActionSettings.name,
     title: 'Document',
     'x-doc-url': `https://client.docs.nocobase.com/components/${blockComponent}`,
-    'x-component-props': {
-      type: 'primary',
-    },
     'x-use-component-props': 'useDocumentActionProps',
   }
 }
