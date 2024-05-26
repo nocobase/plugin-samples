@@ -6,6 +6,9 @@ export const createDocumentModalActionSchema = (blockComponent: string): ISchema
     'x-component': 'Action',
     'x-settings': documentModalActionSettings.name,
     title: 'Open Document',
+    'x-component-props':{ 
+      type: 'primary',
+    },
     properties: {
       drawer: {
         type: 'void',
