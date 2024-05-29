@@ -1,46 +1,101 @@
-import { SchemaComponent, useApp } from "@nocobase/client";
-import React, { FC, useState } from "react";
+import React, { FC, useMemo } from "react";
 import { uid } from "@formily/shared";
-import { SelectProps } from 'antd';
+import { ISchema, useForm } from '@formily/react';
+import { ActionContextProvider, useActionContext, SchemaComponent, useApp, CollectionFieldOptions } from '@nocobase/client';
+
+const useCloseActionProps = () => {
+  const { setVisible } = useActionContext();
+  return {
+    type: 'default',
+    onClick() {
+      setVisible(false);
+    },
+  };
+};
+
+const useSubmitActionProps = (onSubmit: (values: TimelineConfigFormValues) => void) => {
+  const { setVisible } = useActionContext();
+  const form = useForm<TimelineConfigFormValues>();
+
+  return {
+    type: 'primary',
+    async onClick() {
+      await form.submit();
+      const values = form.values;
+      onSubmit(values);
+      setVisible(false);
+    },
+  };
+};
+
+const createSchema = (fields: CollectionFieldOptions[]): ISchema => {
+  return {
+    type: 'void',
+    name: uid(),
+    'x-component': 'Action.Modal',
+    'x-component-props': {
+      width: 600,
+    },
+    'x-decorator': 'FormV2',
+    properties: {
+      titleField: {
+        type: 'string',
+        title: 'Title Field',
+        required: true,
+        enum: fields.map(item => ({ label: item.uiSchema?.title || item.name, value: item.name })),
+        'x-decorator': 'FormItem',
+        'x-component': 'Select',
+      },
+      timeField: {
+        type: 'string',
+        title: 'Time Field',
+        required: true,
+        enum: fields.filter(item => item.type === 'date').map(item => ({ label: item.uiSchema?.title || item.name, value: item.name })),
+        'x-decorator': 'FormItem',
+        'x-component': 'Select',
+      },
+      footer: {
+        type: 'void',
+        'x-component': 'Action.Modal.Footer',
+        properties: {
+          close: {
+            title: 'Close',
+            'x-component': 'Action',
+            'x-component-props': {
+              type: 'default',
+            },
+            'x-use-component-props': 'useCloseActionProps',
+          },
+          submit: {
+            title: 'Submit',
+            'x-component': 'Action',
+            'x-use-component-props': 'useSubmitActionProps',
+          },
+        },
+      },
+    }
+  };
+}
+
+interface TimelineConfigFormValues {
+  timeField: string;
+  titleField: string;
+}
 
 export interface TimelineConfigFormProps {
-    collection: string;
-    dataSource?: string;
-    onSubmit?: (values: { timeField: string; titleField: string }) => void;
+  collection: string;
+  dataSource?: string;
+  onSubmit: (values: TimelineConfigFormValues) => void;
+  visible: boolean;
+  setVisible: (visible: boolean) => void;
 }
 
+export const TimelineInitializerConfigForm: FC<TimelineConfigFormProps> = ({ visible, setVisible, collection, dataSource, onSubmit }) => {
+  const app = useApp();
+  const fields = useMemo(() => app.getCollectionManager(dataSource).getCollection(collection).getFields(), [collection, dataSource])
+  const schema = useMemo(() => createSchema(fields), [fields]);
 
-const createSchema = (options: SelectProps['options']) => {
-    return {
-        type: 'void',
-        name: uid(),
-        'x-component': 'Form',
-        properties: {
-            titleField: {
-                type: 'string',
-                title: 'Title Field',
-                required: true,
-                enum: options,
-                'x-decorator': 'FormItem',
-                'x-component': 'Select',
-            },
-            timeField: {
-                type: 'string',
-                title: 'Time Field',
-                required: true,
-                enum: options,
-                'x-decorator': 'FormItem',
-                'x-component': 'Select',
-            },
-        }
-    };
-}
-
-
-export const TimelineInitializerConfigForm: FC<TimelineConfigFormProps> = ({ collection, dataSource, onSubmit }) => {
-    const app = useApp();
-    const fields: SelectProps['options']  = app.getCollectionManager(dataSource).getCollection(collection).getFields().map(item => ({ label: item.uiSchema?.title || item.name, value: item.name }))
-    const [visible, setVisible] = useState(false);
-
-    return  <SchemaComponent schema={createSchema(fields)} />
+  return <ActionContextProvider value={{ visible, setVisible }}>
+    <SchemaComponent schema={schema} scope={{ useSubmitActionProps: useSubmitActionProps.bind(null, onSubmit), useCloseActionProps }} />
+  </ActionContextProvider>
 }
