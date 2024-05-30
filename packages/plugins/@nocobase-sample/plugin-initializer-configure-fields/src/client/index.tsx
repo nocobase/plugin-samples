@@ -1,5 +1,5 @@
 import { Plugin } from '@nocobase/client';
-import { InfoBlock, infoBlockSettings, infoInitializerItem } from './InfoBlock';
+import { InfoBlock, infoBlockSettings, infoBlockInitializerItem } from './InfoBlock';
 import { InfoItem, configureFields, infoItemSettings } from './configureFields'
 
 export class PluginInitializerConfigureFieldsClient extends Plugin {
@@ -10,9 +10,9 @@ export class PluginInitializerConfigureFieldsClient extends Plugin {
 
     this.app.schemaInitializerManager.add(configureFields);
 
-    this.app.schemaInitializerManager.addItem('page:addBlock', `dataBlocks.${infoInitializerItem.name}`, infoInitializerItem)
-    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `dataBlocks.${infoInitializerItem.name}`, infoInitializerItem)
-    this.app.schemaInitializerManager.addItem('mobilePage:addBlock', `dataBlocks.${infoInitializerItem.name}`, infoInitializerItem)
+    this.app.schemaInitializerManager.addItem('page:addBlock', `dataBlocks.${infoBlockInitializerItem.name}`, infoBlockInitializerItem)
+    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `dataBlocks.${infoBlockInitializerItem.name}`, infoBlockInitializerItem)
+    this.app.schemaInitializerManager.addItem('mobilePage:addBlock', `dataBlocks.${infoBlockInitializerItem.name}`, infoBlockInitializerItem)
   }
 }
 

@@ -43,7 +43,7 @@ function getInfoBlockSchema({ dataSource, collection }) {
   }
 }
 
-export const infoInitializerItem: SchemaInitializerItemType = {
+export const infoBlockInitializerItem: SchemaInitializerItemType = {
   name: 'InfoBlock',
   Component: 'DataBlockInitializer',
   useComponentProps() {
