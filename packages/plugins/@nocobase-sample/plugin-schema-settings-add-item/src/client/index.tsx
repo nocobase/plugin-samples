@@ -1,9 +1,9 @@
 import { Plugin } from '@nocobase/client';
-import { tableBorderedSettingsItem } from './tableBorderSettingsItem'
+import { tableShowIndexSettingsItem } from './tableShowIndexSettingsItem'
 
 export class PluginSchemaSettingsAddItemClient extends Plugin {
   async load() {
-    this.schemaSettingsManager.addItem('blockSettings:table', tableBorderedSettingsItem.name, tableBorderedSettingsItem)
+    this.schemaSettingsManager.addItem('blockSettings:table', tableShowIndexSettingsItem.name, tableShowIndexSettingsItem)
   }
 }
 
