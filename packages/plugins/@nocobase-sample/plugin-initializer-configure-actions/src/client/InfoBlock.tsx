@@ -9,11 +9,11 @@ export interface InfoBlockProps {
   children?: React.ReactNode;
 }
 
-export const InfoBlock: FC<InfoBlockProps> = withDynamicSchemaProps(({ children, collectionName, data }) => {
+export const InfoBlock2: FC<InfoBlockProps> = withDynamicSchemaProps(({ children, collectionName, data }) => {
   return <div>
     <SchemaComponentOptions scope={{ useCustomRefreshActionProps }}>
       {children}
     </SchemaComponentOptions>
     <div>data length: {data?.length}</div>
   </div>
-}, { displayName: 'InfoBlock' })
+}, { displayName: 'InfoBlock2' })

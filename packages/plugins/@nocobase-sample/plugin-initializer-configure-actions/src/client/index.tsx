@@ -1,5 +1,5 @@
-import { Plugin, SchemaComponent } from '@nocobase/client';
-import { InfoBlock } from './InfoBlock';
+import { Plugin } from '@nocobase/client';
+import { InfoBlock2 } from './InfoBlock';
 import { useInfoBlockProps } from './infoBlockSchema';
 import { infoBlockSettings } from './infoBlockSettings';
 import { infoBlockInitializerItem } from './infoBlockInitializerItem';
@@ -11,7 +11,7 @@ export class PluginInitializerConfigureActionsClient extends Plugin {
     this.app.schemaInitializerManager.add(configureActionsInitializer)
     this.app.schemaSettingsManager.add(customRefreshActionSettings);
 
-    this.app.addComponents({ InfoBlock });
+    this.app.addComponents({ InfoBlock2 });
     this.app.addScopes({ useInfoBlockProps });
 
     this.app.schemaSettingsManager.add(infoBlockSettings);

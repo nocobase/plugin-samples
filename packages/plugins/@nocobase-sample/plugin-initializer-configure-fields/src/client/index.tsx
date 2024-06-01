@@ -1,10 +1,10 @@
 import { Plugin } from '@nocobase/client';
-import { InfoBlock, infoBlockSettings, infoBlockInitializerItem } from './InfoBlock';
+import { InfoBlock3, infoBlockSettings, infoBlockInitializerItem } from './InfoBlock';
 import { InfoItem, configureFields, infoItemSettings } from './configureFields'
 
 export class PluginInitializerConfigureFieldsClient extends Plugin {
   async load() {
-    this.app.addComponents({ InfoBlock, InfoItem });
+    this.app.addComponents({ InfoBlock3, InfoItem });
 
     this.app.schemaSettingsManager.add(infoBlockSettings, infoItemSettings);
 

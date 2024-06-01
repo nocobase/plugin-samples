@@ -27,7 +27,7 @@ export function getInfoBlockSchema({ dataSource = 'main', collection }) {
     properties: {
       info: {
         type: 'void',
-        'x-component': 'InfoBlock',
+        'x-component': 'InfoBlock2',
         'x-use-component-props': 'useInfoBlockProps',
         properties: {
           actions: {

@@ -11,7 +11,7 @@ export const InfoItem = () => {
 }
 
 export const infoItemSettings = new SchemaSettings({
-  name: 'fieldSettings:info',
+  name: 'fieldSettings:info3',
   items: [
     {
       name: 'remove',

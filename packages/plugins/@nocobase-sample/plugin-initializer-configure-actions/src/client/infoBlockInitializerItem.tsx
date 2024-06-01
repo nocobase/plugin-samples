@@ -4,14 +4,14 @@ import { CodeOutlined } from '@ant-design/icons';
 import { getInfoBlockSchema } from './infoBlockSchema'
 
 export const infoBlockInitializerItem: SchemaInitializerItemType = {
-  name: 'InfoBlock',
+  name: 'InfoBlock2',
   Component: 'DataBlockInitializer',
   useComponentProps() {
     const { insert } = useSchemaInitializer();
     return {
-      title: 'Info',
+      title: 'Info2',
       icon: <CodeOutlined />,
-      componentType: 'Info',
+      componentType: 'Info2',
       onCreateBlockSchema({ item }) {
         insert(getInfoBlockSchema({ dataSource: item.dataSource, collection: item.name }))
       },
