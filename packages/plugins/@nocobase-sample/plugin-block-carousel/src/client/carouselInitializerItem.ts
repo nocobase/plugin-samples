@@ -1,4 +1,5 @@
 import { SchemaInitializerItemType, useSchemaInitializer } from '@nocobase/client';
+
 import { carouselBlockSchema } from './carouselBlockSchema';
 import { CarouselBlockName, CarouselBlockNameLowercase } from './constants';
 

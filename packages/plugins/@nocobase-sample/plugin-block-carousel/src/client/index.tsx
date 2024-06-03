@@ -9,6 +9,12 @@ export class PluginBlockCarouselClient extends Plugin {
   async load() {
     this.app.addComponents({ Carousel })
     this.app.schemaSettingsManager.add(carouselSettings);
+    this.app.addScopes({ useCarouselBlockProps });
+
+    this.app.schemaInitializerManager.addItem('page:addBlock', `otherBlocks.${carouselInitializerItem.name}`, carouselInitializerItem)
+    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `otherBlocks.${carouselInitializerItem.name}`, carouselInitializerItem)
+    this.app.schemaInitializerManager.addItem('mobilePage:addBlock', `otherBlocks.${carouselInitializerItem.name}`, carouselInitializerItem);
+
     this.app.router.add('admin.carousel-component', {
       path: '/admin/carousel-component',
       Component: () => {
@@ -37,9 +43,8 @@ export class PluginBlockCarouselClient extends Plugin {
         </>
       }
     });
-    this.app.addScopes({ useCarouselBlockProps });
     this.app.router.add('admin.carousel-schema', {
-      path: '/admin/image-carousel-schema',
+      path: '/admin/carousel-schema',
       Component: () => {
         const images = [{ url: 'https://picsum.photos/id/1/1200/300' }, { url: 'https://picsum.photos/id/2/1200/300' }];
         return <>
@@ -58,9 +63,6 @@ export class PluginBlockCarouselClient extends Plugin {
         </>
       }
     });
-
-    this.app.schemaInitializerManager.addItem('page:addBlock', `otherBlocks.${carouselInitializerItem.name}`, carouselInitializerItem)
-    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `otherBlocks.${carouselInitializerItem.name}`, carouselInitializerItem)
   }
 }
 
