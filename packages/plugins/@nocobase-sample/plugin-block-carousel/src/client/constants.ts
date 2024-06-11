@@ -1,2 +1,2 @@
-export const CarouselBlockName = 'Carousel';
-export const CarouselBlockNameLowercase = CarouselBlockName.toLowerCase();
+export const BlockName = 'Carousel';
+export const BlockNameLowercase = BlockName.toLowerCase();

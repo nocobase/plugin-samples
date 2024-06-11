@@ -4,8 +4,14 @@ export const timelineSettings = new SchemaSettings({
   name: 'blockSettings:info',
   items: [
     {
-      name: 'remove',
       type: 'remove',
+      name: 'remove',
+      componentProps: {
+        removeParentsIfNoChildren: true,
+        breakRemoveOn: {
+          'x-component': 'Grid',
+        },
+      }
     }
   ]
 })

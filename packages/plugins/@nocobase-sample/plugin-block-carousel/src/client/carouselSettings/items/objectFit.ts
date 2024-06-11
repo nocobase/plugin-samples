@@ -1,6 +1,7 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
-import { CarouselBlockNameLowercase } from "../../constants";
+import { BlockNameLowercase } from "../../constants";
+import { useCarouselTranslation } from "../../local";
 
 export const schemaSettingsObjectFitItem: SchemaSettingsItemType = {
   name: 'objectFit',
@@ -8,9 +9,10 @@ export const schemaSettingsObjectFitItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
+    const { t } = useCarouselTranslation();
 
     return {
-      title: 'Object Fit',
+      title: t('Object Fit'),
       options: [
         { label: 'Cover', value: 'cover' },
         { label: 'Contain', value: 'contain' },
@@ -18,14 +20,14 @@ export const schemaSettingsObjectFitItem: SchemaSettingsItemType = {
         { label: 'None', value: 'none' },
         { label: 'Scale Down', value: 'scale-down' },
       ],
-      value: filedSchema['x-decorator-props']?.[CarouselBlockNameLowercase]?.objectFit || 'cover',
+      value: filedSchema['x-decorator-props']?.[BlockNameLowercase]?.objectFit || 'cover',
       onChange(v) {
         deepMerge({
           'x-uid': filedSchema['x-uid'],
           'x-decorator-props': {
             ...filedSchema['x-decorator-props'],
-            [CarouselBlockNameLowercase]: {
-              ...filedSchema['x-decorator-props']?.[CarouselBlockNameLowercase],
+            [BlockNameLowercase]: {
+              ...filedSchema['x-decorator-props']?.[BlockNameLowercase],
               objectFit: v,
             },
           },

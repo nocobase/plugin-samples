@@ -1,6 +1,8 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
-import { CarouselBlockNameLowercase } from "../../constants";
+
+import { BlockNameLowercase } from "../../constants";
+import { useCarouselTranslation } from "../../local";
 
 export const schemaSettingsHeightItem: SchemaSettingsItemType = {
   name: 'height',
@@ -8,17 +10,18 @@ export const schemaSettingsHeightItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
+    const { t } = useCarouselTranslation();
 
     return {
-      title: 'Edit height',
+      title: t('Edit Height'),
       schema: {
         type: 'object',
-        title: 'Edit Height',
+        title: t('Edit Height'),
         properties: {
           height: {
-            title: 'Height',
+            title: t('Height'),
             type: 'number',
-            default: filedSchema['x-decorator-props']?.[CarouselBlockNameLowercase]?.height,
+            default: filedSchema['x-decorator-props']?.[BlockNameLowercase]?.height,
             'x-decorator': 'FormItem',
             'x-component': 'InputNumber',
           },
@@ -29,8 +32,8 @@ export const schemaSettingsHeightItem: SchemaSettingsItemType = {
           'x-uid': filedSchema['x-uid'],
           'x-decorator-props': {
             ...filedSchema['x-decorator-props'],
-            [CarouselBlockNameLowercase]: {
-              ...filedSchema['x-decorator-props']?.[CarouselBlockNameLowercase],
+            [BlockNameLowercase]: {
+              ...filedSchema['x-decorator-props']?.[BlockNameLowercase],
               height,
             },
           },

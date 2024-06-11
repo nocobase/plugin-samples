@@ -10,8 +10,14 @@ export const infoBlockSettings = new SchemaSettings({
   name: 'blockSettings:info3',
   items: [
     {
-      name: 'remove',
       type: 'remove',
+      name: 'remove',
+      componentProps: {
+        removeParentsIfNoChildren: true,
+        breakRemoveOn: {
+          'x-component': 'Grid',
+        },
+      }
     }
   ]
 })

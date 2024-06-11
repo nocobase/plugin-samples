@@ -1,6 +1,8 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
-import { CarouselBlockNameLowercase } from "../../constants";
+
+import { BlockNameLowercase } from "../../constants";
+import { useCarouselTranslation } from "../../local";
 
 export const schemaSettingsAutoplayItem: SchemaSettingsItemType = {
   name: 'autoplay',
@@ -8,17 +10,18 @@ export const schemaSettingsAutoplayItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
+    const { t } = useCarouselTranslation();
 
     return {
-      title: 'Autoplay',
-      checked: !!filedSchema['x-decorator-props']?.[CarouselBlockNameLowercase]?.autoplay,
+      title: t('Autoplay'),
+      checked: !!filedSchema['x-decorator-props']?.[BlockNameLowercase]?.autoplay,
       onChange(v) {
         deepMerge({
           'x-uid': filedSchema['x-uid'],
           'x-decorator-props': {
             ...filedSchema['x-decorator-props'],
-            [CarouselBlockNameLowercase]: {
-              ...filedSchema['x-decorator-props']?.[CarouselBlockNameLowercase],
+            [BlockNameLowercase]: {
+              ...filedSchema['x-decorator-props']?.[BlockNameLowercase],
               autoplay: v,
             },
           },

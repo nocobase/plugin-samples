@@ -1,12 +1,12 @@
 import { SchemaSettings, SchemaSettingsBlockTitleItem } from '@nocobase/client';
-import { CarouselBlockNameLowercase } from '../constants';
+import { BlockNameLowercase } from '../constants';
 import { schemaSettingsHeightItem } from './items/height';
 import { schemaSettingsObjectFitItem } from './items/objectFit';
 import { schemaSettingsImagesItem } from './items/images';
 import { schemaSettingsAutoplayItem } from './items/autoplay';
 
 export const carouselSettings = new SchemaSettings({
-  name: `blockSettings:${CarouselBlockNameLowercase}`,
+  name: `blockSettings:${BlockNameLowercase}`,
   items: [
     {
       name: 'editBlockTitle',
@@ -27,6 +27,12 @@ export const carouselSettings = new SchemaSettings({
     {
       type: 'remove',
       name: 'remove',
+      componentProps: {
+        removeParentsIfNoChildren: true,
+        breakRemoveOn: {
+          'x-component': 'Grid',
+        },
+      }
     }
   ]
 });

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Carousel as AntdCarousel, Result, CarouselProps as AntdCarouselProps } from 'antd';
 import { withDynamicSchemaProps } from '@nocobase/client';
-import { CarouselBlockName } from './constants';
+import { BlockName } from './constants';
 
 export interface CarouselProps extends AntdCarouselProps {
   images?: { url: string; title?: string }[];
@@ -26,5 +26,5 @@ export const Carousel: FC<CarouselProps> = withDynamicSchemaProps((props) => {
       ))}
     </AntdCarousel>
   ) : <Result status='404' />
-}, { displayName: CarouselBlockName })
+}, { displayName: BlockName })
 
