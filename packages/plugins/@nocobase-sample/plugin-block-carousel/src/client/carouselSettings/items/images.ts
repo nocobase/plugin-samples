@@ -2,7 +2,7 @@ import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
 
 import { BlockNameLowercase } from "../../constants";
-import { useCarouselTranslation } from "../../local";
+import { useCarouselTranslation } from "../../locale";
 
 export const schemaSettingsImagesItem: SchemaSettingsItemType = {
   name: 'images',

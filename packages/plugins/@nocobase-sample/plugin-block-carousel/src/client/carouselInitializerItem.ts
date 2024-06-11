@@ -2,7 +2,7 @@ import { SchemaInitializerItemType, useSchemaInitializer } from '@nocobase/clien
 
 import { carouselBlockSchema } from './carouselBlockSchema';
 import { BlockName, BlockNameLowercase } from './constants';
-import { useCarouselTranslation } from './local';
+import { useCarouselTranslation } from './locale';
 
 export const carouselInitializerItem: SchemaInitializerItemType = {
   type: 'item',
