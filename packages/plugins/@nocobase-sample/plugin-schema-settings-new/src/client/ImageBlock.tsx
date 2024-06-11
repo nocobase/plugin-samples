@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { withDynamicSchemaProps } from '@nocobase/client';
 
-export interface ImageBlockProps {
+export interface ImageProps {
   src?: { url: string; title?: string };
   /**
    * @default 500
@@ -17,7 +17,7 @@ export interface ImageBlockProps {
   lazy?: boolean;
 }
 
-export const ImageBlock2: FC<ImageBlockProps> = withDynamicSchemaProps((props) => {
+export const Image2: FC<ImageProps> = withDynamicSchemaProps((props) => {
   const { src, height = 500, objectFit = 'cover', lazy = false } = props;
   return <div style={{ height }}>
     {
@@ -29,4 +29,4 @@ export const ImageBlock2: FC<ImageBlockProps> = withDynamicSchemaProps((props) =
       /> : null
     }
   </div>
-}, { displayName: 'ImageBlock' })
+}, { displayName: 'Image' })

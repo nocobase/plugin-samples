@@ -1,15 +1,16 @@
 import { Plugin } from '@nocobase/client';
-import { ImageBlock } from './ImageBlock';
-import { imageBlockInitializerItem } from './imageBlockInitializerItem';
-import { imageBlockSettings } from './imageBlockSettings';
+
+import { Image } from './component'
+import { imageSettings } from './settings';
+import { imageInitializerItem } from './initializer';
 
 export class PluginInitializerBlockSimpleClient extends Plugin {
   async load() {
-    this.app.addComponents({ ImageBlock })
-    this.app.schemaSettingsManager.add(imageBlockSettings)
-    this.app.schemaInitializerManager.addItem('page:addBlock', `otherBlocks.${imageBlockInitializerItem.name}`, imageBlockInitializerItem)
-    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `otherBlocks.${imageBlockInitializerItem.name}`, imageBlockInitializerItem)
-    this.app.schemaInitializerManager.addItem('mobilePage:addBlock', `otherBlocks.${imageBlockInitializerItem.name}`, imageBlockInitializerItem)
+    this.app.addComponents({ Image })
+    this.app.schemaSettingsManager.add(imageSettings)
+    this.app.schemaInitializerManager.addItem('page:addBlock', `otherBlocks.${imageInitializerItem.name}`, imageInitializerItem)
+    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `otherBlocks.${imageInitializerItem.name}`, imageInitializerItem)
+    this.app.schemaInitializerManager.addItem('mobilePage:addBlock', `otherBlocks.${imageInitializerItem.name}`, imageInitializerItem)
   }
 }
 

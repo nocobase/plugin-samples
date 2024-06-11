@@ -1,14 +1,14 @@
 import { ISchema } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
-import { imageBlockSettings } from "./imageBlockSettings";
-import { ImageBlockProps } from "./ImageBlock";
+import { imageSettings } from "./imageBlockSettings";
+import { ImageProps } from "./ImageBlock";
 
-export function useImageBlockProps(): ImageBlockProps {
+export function useImageProps(): ImageProps {
   const fieldSchema = useFieldSchema();
   return fieldSchema.parent?.['x-decorator-props']?.['image'];
 }
 
-export const imageBlockSchema: ISchema = {
+export const imageSchema: ISchema = {
   type: 'void',
   'x-component': 'CardItem',
   'x-decorator-props': {
@@ -16,10 +16,10 @@ export const imageBlockSchema: ISchema = {
   },
   properties: {
     image: {
-      'x-component': 'ImageBlock2',
-      'x-use-component-props': 'useImageBlockProps'
+      'x-component': 'Image2',
+      'x-use-component-props': 'useImageProps'
     }
   },
-  'x-settings': imageBlockSettings.name
+  'x-settings': imageSettings.name
 };
 

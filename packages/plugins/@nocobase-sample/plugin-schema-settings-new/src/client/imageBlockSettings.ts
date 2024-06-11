@@ -4,7 +4,7 @@ import { schemaSettingsSrcItem } from "./SchemaSettingsItems/src";
 import { schemaSettingsObjectFitItem } from "./SchemaSettingsItems/objectFit";
 import { schemaSettingsLazyItem } from "./SchemaSettingsItems/lazy";
 
-export const imageBlockSettings = new SchemaSettings({
+export const imageSettings = new SchemaSettings({
   name: 'blockSettings:image2',
   items: [
     {
