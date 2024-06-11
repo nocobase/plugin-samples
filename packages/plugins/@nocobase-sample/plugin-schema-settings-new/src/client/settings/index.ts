@@ -1,11 +1,14 @@
 import { SchemaSettings, SchemaSettingsBlockTitleItem, } from "@nocobase/client";
-import { schemaSettingsHeightItem } from "./SchemaSettingsItems/height";
-import { schemaSettingsSrcItem } from "./SchemaSettingsItems/src";
-import { schemaSettingsObjectFitItem } from "./SchemaSettingsItems/objectFit";
-import { schemaSettingsLazyItem } from "./SchemaSettingsItems/lazy";
+
+import { BlockNameLowercase } from "../constants";
+
+import { schemaSettingsHeightItem } from "./items/height";
+import { schemaSettingsLazyItem } from "./items/lazy";
+import { schemaSettingsObjectFitItem } from "./items/objectFit";
+import { schemaSettingsSrcItem } from "./items/src";
 
 export const imageSettings = new SchemaSettings({
-  name: 'blockSettings:image2',
+  name: `blockSettings:${BlockNameLowercase}`,
   items: [
     {
       name: 'editBlockTitle',

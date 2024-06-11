@@ -1,16 +1,18 @@
 import { SchemaInitializerItemType, useSchemaInitializer } from '@nocobase/client';
-import { imageSchema } from './imageBlockSchema';
+import { imageSchema } from '../schema';
+import { BlockName, BlockNameLowercase } from '../constants';
+import { useImageTranslation } from '../locale';
 
 export const imageInitializerItem: SchemaInitializerItemType = {
   type: 'item',
-  name: 'Image2',
+  name: BlockNameLowercase,
   icon: 'FileImageOutlined',
   useComponentProps() {
     const { insert } = useSchemaInitializer();
+    const { t } = useImageTranslation();
     return {
-      title: 'Image',
+      title: t(BlockName),
       onClick: () => {
-
         insert(imageSchema);
       },
     };

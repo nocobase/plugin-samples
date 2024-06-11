@@ -1,12 +1,12 @@
 import { Plugin } from '@nocobase/client';
-import { Image2 } from './ImageBlock';
-import { imageInitializerItem } from './imageBlockInitializerItem';
-import { useImageProps } from './imageBlockSchema';
-import { imageSettings } from './imageBlockSettings';
+import { ImageV2 } from './component';
+import { useImageProps } from './schema';
+import { imageInitializerItem } from './initializer';
+import { imageSettings } from './settings';
 
 export class PluginSchemaSettingsNewClient extends Plugin {
   async load() {
-    this.app.addComponents({ Image2 })
+    this.app.addComponents({ ImageV2 })
     this.app.addScopes({ useImageProps })
 
     this.app.schemaSettingsManager.add(imageSettings)

@@ -1,36 +1,41 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
+import { useImageTranslation } from "../../locale";
 
-export const schemaSettingsHeightItem: SchemaSettingsItemType = {
-  name: 'height',
+export const schemaSettingsSrcItem: SchemaSettingsItemType = {
+  name: 'src',
   type: 'actionModal',
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
+    const { t } = useImageTranslation();
 
     return {
-      title: 'Edit height',
+      title: t('Edit Image'),
       schema: {
         type: 'object',
-        title: 'Edit Height',
+        title: t('Edit Image'),
         properties: {
-          height: {
-            title: 'Image Height',
-            type: 'number',
-            default: filedSchema['x-decorator-props']?.image?.height,
+          src: {
+            title: t('Image'),
+            type: 'string',
+            default: filedSchema['x-decorator-props']?.image?.src,
             'x-decorator': 'FormItem',
-            'x-component': 'InputNumber',
+            'x-component': 'Upload.Attachment',
+            'x-component-props': {
+              action: 'attachments:create',
+            },
           },
         },
       },
-      onSubmit({ height }: any) {
+      onSubmit(image: any) {
         deepMerge({
           'x-uid': filedSchema['x-uid'],
           'x-decorator-props': {
             ...filedSchema['x-decorator-props'],
             image: {
               ...filedSchema['x-decorator-props']?.['image'],
-              height,
+              src: image.src,
             },
           },
         })

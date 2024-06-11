@@ -1,5 +1,6 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
+import { useImageTranslation } from "../../locale";
 
 export const schemaSettingsLazyItem: SchemaSettingsItemType = {
   name: 'lazy',
@@ -7,9 +8,10 @@ export const schemaSettingsLazyItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
+    const { t } = useImageTranslation();
 
     return {
-      title: 'Lazy',
+      title: t('Lazy'),
       checked: !!filedSchema['x-decorator-props']?.image?.lazy,
       onChange(v) {
         deepMerge({

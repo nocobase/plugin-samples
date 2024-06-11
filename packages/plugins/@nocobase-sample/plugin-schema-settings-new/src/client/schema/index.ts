@@ -1,7 +1,8 @@
 import { ISchema } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
-import { imageSettings } from "./imageBlockSettings";
-import { ImageProps } from "./ImageBlock";
+import { ImageProps } from "../component";
+import { imageSettings } from "../settings";
+import { BlockName } from "../constants";
 
 export function useImageProps(): ImageProps {
   const fieldSchema = useFieldSchema();
@@ -16,7 +17,7 @@ export const imageSchema: ISchema = {
   },
   properties: {
     image: {
-      'x-component': 'Image2',
+      'x-component': BlockName,
       'x-use-component-props': 'useImageProps'
     }
   },
