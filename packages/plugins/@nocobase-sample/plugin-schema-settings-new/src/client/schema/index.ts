@@ -1,24 +1,25 @@
 import { ISchema } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
-import { ImageProps } from "../component";
 import { imageSettings } from "../settings";
-import { BlockName } from "../constants";
+import { BlockName, BlockNameLowercase } from "../constants";
 
-export function useImageProps(): ImageProps {
+import { ImageV2Props } from "../component";
+
+export function useImageV2Props(): ImageV2Props {
   const fieldSchema = useFieldSchema();
-  return fieldSchema.parent?.['x-decorator-props']?.['image'];
+  return fieldSchema.parent?.['x-decorator-props']?.[BlockNameLowercase];
 }
 
 export const imageSchema: ISchema = {
   type: 'void',
   'x-component': 'CardItem',
   'x-decorator-props': {
-    image: {}
+    [BlockNameLowercase]: {}
   },
   properties: {
-    image: {
+    [BlockNameLowercase]: {
       'x-component': BlockName,
-      'x-use-component-props': 'useImageProps'
+      'x-use-component-props': 'useImageV2Props'
     }
   },
   'x-settings': imageSettings.name

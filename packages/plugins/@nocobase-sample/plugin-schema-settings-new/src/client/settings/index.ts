@@ -2,10 +2,10 @@ import { SchemaSettings, SchemaSettingsBlockTitleItem, } from "@nocobase/client"
 
 import { BlockNameLowercase } from "../constants";
 
-import { schemaSettingsHeightItem } from "./items/height";
-import { schemaSettingsLazyItem } from "./items/lazy";
-import { schemaSettingsObjectFitItem } from "./items/objectFit";
-import { schemaSettingsSrcItem } from "./items/src";
+import { heightSchemaSettingsItem } from "./items/height";
+import { imageSchemaSettingsItem } from "./items/image";
+import { lazySchemaSettingsItem } from "./items/lazy";
+import { objectFitSchemaSettingsItem } from "./items/objectFit";
 
 export const imageSettings = new SchemaSettings({
   name: `blockSettings:${BlockNameLowercase}`,
@@ -14,18 +14,18 @@ export const imageSettings = new SchemaSettings({
       name: 'editBlockTitle',
       Component: SchemaSettingsBlockTitleItem,
     },
-    {
-      name: 'divider1',
-      type: 'divider'
-    },
-    schemaSettingsSrcItem,
-    schemaSettingsHeightItem,
-    schemaSettingsObjectFitItem,
-    schemaSettingsLazyItem,
-    {
-      name: 'divider2',
-      type: 'divider'
-    },
+    // {
+    //   name: 'divider1',
+    //   type: 'divider'
+    // },
+    imageSchemaSettingsItem,
+    // heightSchemaSettingsItem,
+    // objectFitSchemaSettingsItem,
+    // lazySchemaSettingsItem,
+    // {
+    //   name: 'divider2',
+    //   type: 'divider'
+    // },
     {
       type: 'remove',
       name: 'remove',

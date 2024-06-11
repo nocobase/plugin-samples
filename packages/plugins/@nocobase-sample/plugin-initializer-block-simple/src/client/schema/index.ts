@@ -1,12 +1,12 @@
 import { ISchema } from "@nocobase/client";
 import { imageSettings } from "../settings";
-import { BlockName } from "../constants";
+import { BlockName, BlockNameLowercase } from "../constants";
 
 export const imageSchema: ISchema = {
   type: 'void',
   'x-component': 'CardItem',
   properties: {
-    image: {
+    [BlockNameLowercase]: {
       'x-component': BlockName,
     }
   },

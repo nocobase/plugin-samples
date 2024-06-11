@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { withDynamicSchemaProps } from '@nocobase/client';
 import { BlockName } from '../constants';
 
-export interface ImageProps {
+export interface ImageV2Props {
   src?: { url: string; title?: string };
   /**
    * @default 500
@@ -18,7 +18,7 @@ export interface ImageProps {
   lazy?: boolean;
 }
 
-export const ImageV2: FC<ImageProps> = withDynamicSchemaProps((props) => {
+export const ImageV2: FC<ImageV2Props> = withDynamicSchemaProps((props) => {
   const { src, height = 500, objectFit = 'cover', lazy = false } = props;
   return <div style={{ height }}>
     {

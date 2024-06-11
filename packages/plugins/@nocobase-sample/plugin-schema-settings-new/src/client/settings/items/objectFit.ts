@@ -1,8 +1,9 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
 import { useImageTranslation } from "../../locale";
+import { BlockNameLowercase } from "../../constants";
 
-export const schemaSettingsObjectFitItem: SchemaSettingsItemType = {
+export const objectFitSchemaSettingsItem: SchemaSettingsItemType = {
   name: 'objectFit',
   type: 'select',
   useComponentProps() {
@@ -19,14 +20,14 @@ export const schemaSettingsObjectFitItem: SchemaSettingsItemType = {
         { label: 'None', value: 'none' },
         { label: 'Scale Down', value: 'scale-down' },
       ],
-      value: filedSchema['x-decorator-props']?.image?.objectFit || 'cover',
+      value: filedSchema['x-decorator-props']?.[BlockNameLowercase]?.objectFit || 'cover',
       onChange(v) {
         deepMerge({
           'x-uid': filedSchema['x-uid'],
           'x-decorator-props': {
             ...filedSchema['x-decorator-props'],
-            image: {
-              ...filedSchema['x-decorator-props']?.['image'],
+            [BlockNameLowercase]: {
+              ...filedSchema['x-decorator-props']?.[BlockNameLowercase],
               objectFit: v,
             },
           },

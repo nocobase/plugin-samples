@@ -1,8 +1,9 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
 import { useImageTranslation } from "../../locale";
+import { BlockNameLowercase } from "../../constants";
 
-export const schemaSettingsSrcItem: SchemaSettingsItemType = {
+export const imageSchemaSettingsItem: SchemaSettingsItemType = {
   name: 'src',
   type: 'actionModal',
   useComponentProps() {
@@ -19,7 +20,7 @@ export const schemaSettingsSrcItem: SchemaSettingsItemType = {
           src: {
             title: t('Image'),
             type: 'string',
-            default: filedSchema['x-decorator-props']?.image?.src,
+            default: filedSchema['x-decorator-props']?.[BlockNameLowercase]?.src,
             'x-decorator': 'FormItem',
             'x-component': 'Upload.Attachment',
             'x-component-props': {
@@ -33,8 +34,8 @@ export const schemaSettingsSrcItem: SchemaSettingsItemType = {
           'x-uid': filedSchema['x-uid'],
           'x-decorator-props': {
             ...filedSchema['x-decorator-props'],
-            image: {
-              ...filedSchema['x-decorator-props']?.['image'],
+            [BlockNameLowercase]: {
+              ...filedSchema['x-decorator-props']?.[BlockNameLowercase],
               src: image.src,
             },
           },
