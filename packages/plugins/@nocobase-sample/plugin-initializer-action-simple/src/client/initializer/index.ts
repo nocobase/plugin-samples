@@ -1,14 +1,16 @@
 import { SchemaInitializerItemType, useSchemaInitializer } from "@nocobase/client"
-import { createDocumentActionSchema } from './documentActionSchema';
+import { createDocumentActionSchema } from '../schema';
+import { ActionNameLowercase, ActionName } from "../constants";
+import { useDocumentTranslation } from "../locale";
 
 export const createDocumentActionInitializerItem = (blockComponent: string): SchemaInitializerItemType => ({
   type: 'item',
-  title: 'Document',
-  name: 'document',
+  name: ActionNameLowercase,
   useComponentProps() {
     const { insert } = useSchemaInitializer();
+    const { t } = useDocumentTranslation();
     return {
-      title: 'Document',
+      title: t(ActionName),
       onClick: () => {
         insert(createDocumentActionSchema(blockComponent));
       },

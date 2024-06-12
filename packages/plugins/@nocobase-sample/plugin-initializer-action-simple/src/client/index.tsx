@@ -1,7 +1,7 @@
 import { Plugin } from '@nocobase/client';
-import { useDocumentActionProps } from './documentActionSchema';
-import { documentActionSettings } from './documentActionSettings';
-import { createDocumentActionInitializerItem } from './documentActionInitializerItem';
+import { useDocumentActionProps } from './schema';
+import { documentActionSettings } from './settings';
+import { createDocumentActionInitializerItem } from './initializer';
 
 export class PluginInitializerActionSimpleClient extends Plugin {
   async load() {
