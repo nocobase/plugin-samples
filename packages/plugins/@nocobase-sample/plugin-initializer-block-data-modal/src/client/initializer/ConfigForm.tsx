@@ -2,6 +2,7 @@ import React, { FC, useMemo } from "react";
 import { uid } from "@formily/shared";
 import { ISchema, useForm } from '@formily/react';
 import { ActionContextProvider, useActionContext, SchemaComponent, useApp, CollectionFieldOptions } from '@nocobase/client';
+import { useTimelineTranslation } from "../locale";
 
 const useCloseActionProps = () => {
   const { setVisible } = useActionContext();
@@ -28,7 +29,7 @@ const useSubmitActionProps = (onSubmit: (values: TimelineConfigFormValues) => vo
   };
 };
 
-const createSchema = (fields: CollectionFieldOptions[]): ISchema => {
+const createSchema = (fields: CollectionFieldOptions, { t }: ReturnType<typeof useTimelineTranslation>): ISchema => {
   return {
     type: 'void',
     name: uid(),
@@ -40,7 +41,7 @@ const createSchema = (fields: CollectionFieldOptions[]): ISchema => {
     properties: {
       titleField: {
         type: 'string',
-        title: 'Title Field',
+        title: t('Title Field'),
         required: true,
         enum: fields.map(item => ({ label: item.uiSchema?.title || item.name, value: item.name })),
         'x-decorator': 'FormItem',
@@ -48,7 +49,7 @@ const createSchema = (fields: CollectionFieldOptions[]): ISchema => {
       },
       timeField: {
         type: 'string',
-        title: 'Time Field',
+        title: t('Time Field'),
         required: true,
         enum: fields.filter(item => item.type === 'date').map(item => ({ label: item.uiSchema?.title || item.name, value: item.name })),
         'x-decorator': 'FormItem',
@@ -59,7 +60,7 @@ const createSchema = (fields: CollectionFieldOptions[]): ISchema => {
         'x-component': 'Action.Modal.Footer',
         properties: {
           close: {
-            title: 'Close',
+            title: t('Close'),
             'x-component': 'Action',
             'x-component-props': {
               type: 'default',
@@ -67,7 +68,7 @@ const createSchema = (fields: CollectionFieldOptions[]): ISchema => {
             'x-use-component-props': 'useCloseActionProps',
           },
           submit: {
-            title: 'Submit',
+            title: t('Submit'),
             'x-component': 'Action',
             'x-use-component-props': 'useSubmitActionProps',
           },
@@ -92,8 +93,9 @@ export interface TimelineConfigFormProps {
 
 export const TimelineInitializerConfigForm: FC<TimelineConfigFormProps> = ({ visible, setVisible, collection, dataSource, onSubmit }) => {
   const app = useApp();
+  const tt = useTimelineTranslation();
   const fields = useMemo(() => app.getCollectionManager(dataSource).getCollection(collection).getFields(), [collection, dataSource])
-  const schema = useMemo(() => createSchema(fields), [fields]);
+  const schema = useMemo(() => createSchema(fields, tt), [fields]);
 
   return <ActionContextProvider value={{ visible, setVisible }}>
     <SchemaComponent schema={schema} scope={{ useSubmitActionProps: useSubmitActionProps.bind(null, onSubmit), useCloseActionProps }} />

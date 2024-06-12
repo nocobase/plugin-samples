@@ -1,15 +1,16 @@
 import { useDataBlockProps, useDataBlockRequest } from "@nocobase/client";
-import { timelineSettings } from './timelineSettings';
-import { TimelineBlockProps } from './TimelineBlock';
+import { timelineSettings } from '../settings';
+import { TimelineProps } from '../component';
+import { BlockName, BlockNameLowercase } from "../constants";
 
-interface GetTimelineBlockSchemaOptions {
+interface GetTimelineSchemaOptions {
   dataSource?: string;
   collection: string;
   titleField: string;
   timeField: string;
 }
 
-export function getTimelineBlockSchema(options: GetTimelineBlockSchemaOptions) {
+export function getTimelineSchema(options: GetTimelineSchemaOptions) {
   const { dataSource, collection, titleField, timeField } = options;
   return {
     type: 'void',
@@ -22,30 +23,31 @@ export function getTimelineBlockSchema(options: GetTimelineBlockSchemaOptions) {
       params: {
         sort: `-${timeField}`
       },
-      timeline: {
+      [BlockNameLowercase]: {
         titleField,
         timeField,
       }
     },
     'x-component': 'CardItem',
     properties: {
-      timeline: {
+      [BlockNameLowercase]: {
         type: 'void',
-        'x-component': 'TimelineBlock',
-        'x-use-component-props': 'useTimelineBlockProps',
+        'x-component': BlockName,
+        'x-use-component-props': 'useTimelineProps',
       }
     }
   }
 }
 
-export function useTimelineBlockProps(): TimelineBlockProps {
-  const { timeline } = useDataBlockProps();
+export function useTimelineProps(): TimelineProps {
+  const dataProps = useDataBlockProps();
+  const props = dataProps[BlockNameLowercase];
   const { loading, data } = useDataBlockRequest<any[]>();
   return {
     loading,
     data: data?.data?.map((item) => ({
-      label: item[timeline.timeField],
-      children: item[timeline.titleField],
+      label: item[props.timeField],
+      children: item[props.titleField],
     }))
   }
 }

@@ -2,17 +2,20 @@ import React, { useCallback, useState } from 'react';
 import { FieldTimeOutlined } from '@ant-design/icons';
 import { DataBlockInitializer, SchemaInitializerItemType, useSchemaInitializer } from "@nocobase/client";
 
-import { getTimelineBlockSchema } from './timelineSchema';
-import { TimelineConfigFormProps, TimelineInitializerConfigForm } from './TimelineInitializerConfigForm';
+import { getTimelineSchema } from '../schema';
+import { useTimelineTranslation } from '../locale';
+import { TimelineConfigFormProps, TimelineInitializerConfigForm } from './ConfigForm';
+import { BlockName, BlockNameLowercase } from '../constants';
 
 export const TimelineInitializerComponent = () => {
   const { insert } = useSchemaInitializer();
   const [collection, setCollection] = useState<string>();
   const [dataSource, setDataSource] = useState<string>();
   const [showConfigForm, setShowConfigForm] = useState(false);
+  const { t } = useTimelineTranslation()
 
   const onSubmit: TimelineConfigFormProps['onSubmit'] = useCallback((values) => {
-    const schema = getTimelineBlockSchema({ collection, dataSource, timeField: values.timeField, titleField: values.titleField });
+    const schema = getTimelineSchema({ collection, dataSource, timeField: values.timeField, titleField: values.titleField });
     insert(schema);
   }, [collection, dataSource])
 
@@ -25,10 +28,10 @@ export const TimelineInitializerComponent = () => {
       dataSource={dataSource}
     />}
     <DataBlockInitializer
-      name='timeline'
-      title='Timeline'
+      name={BlockNameLowercase}
+      title={t(BlockName)}
       icon={<FieldTimeOutlined />}
-      componentType='Timeline'
+      componentType={BlockName}
       onCreateBlockSchema={({ item }) => {
         const { name: collection, dataSource } = item;
         setCollection(collection);
@@ -41,6 +44,6 @@ export const TimelineInitializerComponent = () => {
 }
 
 export const timelineInitializerItem: SchemaInitializerItemType = {
-  name: 'TimelineBlock',
+  name: 'Timeline',
   Component: TimelineInitializerComponent,
 }

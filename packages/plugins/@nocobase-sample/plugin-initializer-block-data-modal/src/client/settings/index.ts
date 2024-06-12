@@ -1,7 +1,8 @@
 import { SchemaSettings } from "@nocobase/client";
+import { BlockNameLowercase } from "../constants";
 
 export const timelineSettings = new SchemaSettings({
-  name: 'blockSettings:info',
+  name: `blockSettings:${BlockNameLowercase}`,
   items: [
     {
       type: 'remove',
