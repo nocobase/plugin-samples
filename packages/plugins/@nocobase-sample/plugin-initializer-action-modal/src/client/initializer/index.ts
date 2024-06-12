@@ -1,14 +1,18 @@
 import { SchemaInitializerItemType, useSchemaInitializer } from "@nocobase/client"
-import { createDocumentActionModalSchema } from './documentActionModalSchema';
+
+import { useOpenDocumentTranslation } from "../locale";
+import { createDocumentActionModalSchema } from '../schema';
+import { ActionName, ActionNameLowercase } from "../constants";
 
 export const createDocumentActionModalInitializerItem = (blockComponent: string): SchemaInitializerItemType => ({
   type: 'item',
-  title: 'Open Document',
-  name: 'open-document',
+  title: ActionName,
+  name: ActionNameLowercase,
   useComponentProps() {
     const { insert } = useSchemaInitializer();
+    const { t } = useOpenDocumentTranslation();
     return {
-      title: 'Open Document',
+      title: t(ActionName),
       onClick: () => {
         insert(createDocumentActionModalSchema(blockComponent));
       },

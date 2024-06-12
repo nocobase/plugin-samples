@@ -1,15 +1,22 @@
 import { ISchema } from "@nocobase/client"
-import { documentActionModalSettings } from "./documentActionModalSettings"
+import { documentActionModalSettings } from "../settings"
+import { useOpenDocumentTranslation } from "../locale";
+import { ActionName } from "../constants";
+
+export function useOpenDocumentActionProps() {
+  const { t } = useOpenDocumentTranslation();
+  return {
+    title: t(ActionName),
+    type: 'primary'
+  }
+}
 
 export const createDocumentActionModalSchema = (blockComponent: string): ISchema => {
   return {
     type: 'void',
     'x-component': 'Action',
     'x-settings': documentActionModalSettings.name,
-    title: 'Open Document',
-    'x-component-props': {
-      type: 'primary',
-    },
+    'x-use-component-props': 'useOpenDocumentActionProps',
     properties: {
       drawer: {
         type: 'void',
@@ -17,7 +24,6 @@ export const createDocumentActionModalSchema = (blockComponent: string): ISchema
         'x-component-props': {
           size: 'large'
         },
-        title: 'Block Document',
         properties: {
           iframe: {
             type: 'void',

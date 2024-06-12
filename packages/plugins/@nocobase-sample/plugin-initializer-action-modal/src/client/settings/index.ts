@@ -1,7 +1,8 @@
 import { SchemaSettings } from "@nocobase/client";
+import { ActionNameLowercase } from "../constants";
 
 export const documentActionModalSettings = new SchemaSettings({
-  name: 'actionSettings:documentModal',
+  name: `actionSettings:${ActionNameLowercase}`,
   items: [
     {
       name: 'remove',

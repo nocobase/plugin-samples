@@ -1,9 +1,12 @@
 import { Plugin } from '@nocobase/client';
-import { documentActionModalSettings } from './documentActionModalSettings';
-import { createDocumentActionModalInitializerItem } from './documentActionModalInitializerItem';
+
+import { useOpenDocumentActionProps } from './schema'
+import { createDocumentActionModalInitializerItem } from './initializer';
+import { documentActionModalSettings } from './settings';
 
 export class PluginInitializerActionModalClient extends Plugin {
   async load() {
+    this.app.addScopes({ useOpenDocumentActionProps })
     this.app.schemaSettingsManager.add(documentActionModalSettings);
     this.app.schemaInitializerManager.addItem('table:configureActions', 'open-document', createDocumentActionModalInitializerItem('table-v2'));
     this.app.schemaInitializerManager.addItem('details:configureActions', 'open-document', createDocumentActionModalInitializerItem('details'));
