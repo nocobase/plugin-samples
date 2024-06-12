@@ -1,8 +1,8 @@
 import { Plugin } from '@nocobase/client';
-import { Carousel } from './Carousel';
-import { useCarouselBlockProps } from './carouselBlockSchema';
-import { carouselSettings } from './carouselSettings';
-import { carouselInitializerItem } from './carouselInitializerItem';
+import { Carousel } from './component';
+import { carouselInitializerItem } from './initializer';
+import { useCarouselBlockProps } from './schema';
+import { carouselSettings } from './settings';
 
 export class PluginBlockCarouselClient extends Plugin {
   async load() {

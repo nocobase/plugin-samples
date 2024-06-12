@@ -1,9 +1,9 @@
 import { SchemaSettings, SchemaSettingsBlockTitleItem } from '@nocobase/client';
 import { BlockNameLowercase } from '../constants';
-import { schemaSettingsHeightItem } from './items/height';
-import { schemaSettingsObjectFitItem } from './items/objectFit';
-import { schemaSettingsImagesItem } from './items/images';
-import { schemaSettingsAutoplayItem } from './items/autoplay';
+import { imagesSchemaSettingsItem } from './items/images';
+import { heightSchemaSettingsItem } from './items/height';
+import { objectFitSchemaSettingsItem } from './items/objectFit';
+import { autoplaySchemaSettingsItem } from './items/autoplay';
 
 export const carouselSettings = new SchemaSettings({
   name: `blockSettings:${BlockNameLowercase}`,
@@ -16,10 +16,10 @@ export const carouselSettings = new SchemaSettings({
       name: 'divider1',
       type: 'divider'
     },
-    schemaSettingsImagesItem,
-    schemaSettingsHeightItem,
-    schemaSettingsObjectFitItem,
-    schemaSettingsAutoplayItem,
+    imagesSchemaSettingsItem,
+    heightSchemaSettingsItem,
+    objectFitSchemaSettingsItem,
+    autoplaySchemaSettingsItem,
     {
       name: 'divider2',
       type: 'divider'

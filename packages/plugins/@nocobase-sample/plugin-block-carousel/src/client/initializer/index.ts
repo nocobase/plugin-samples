@@ -1,8 +1,8 @@
 import { SchemaInitializerItemType, useSchemaInitializer } from '@nocobase/client';
 
-import { carouselBlockSchema } from './carouselBlockSchema';
-import { BlockName, BlockNameLowercase } from './constants';
-import { useCarouselTranslation } from './locale';
+import { carouselSchema } from '../schema';
+import { BlockName, BlockNameLowercase } from '../constants';
+import { useCarouselTranslation } from '../locale';
 
 export const carouselInitializerItem: SchemaInitializerItemType = {
   type: 'item',
@@ -14,7 +14,7 @@ export const carouselInitializerItem: SchemaInitializerItemType = {
     return {
       title: t(BlockName),
       onClick: () => {
-        insert(carouselBlockSchema);
+        insert(carouselSchema);
       },
     };
   },

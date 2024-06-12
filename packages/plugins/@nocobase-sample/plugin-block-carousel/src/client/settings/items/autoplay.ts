@@ -4,7 +4,7 @@ import { useFieldSchema } from '@formily/react';
 import { BlockNameLowercase } from "../../constants";
 import { useCarouselTranslation } from "../../locale";
 
-export const schemaSettingsAutoplayItem: SchemaSettingsItemType = {
+export const autoplaySchemaSettingsItem: SchemaSettingsItemType = {
   name: 'autoplay',
   type: 'switch',
   useComponentProps() {

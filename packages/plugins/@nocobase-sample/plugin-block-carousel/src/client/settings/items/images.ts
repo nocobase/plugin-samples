@@ -4,7 +4,7 @@ import { useFieldSchema } from '@formily/react';
 import { BlockNameLowercase } from "../../constants";
 import { useCarouselTranslation } from "../../locale";
 
-export const schemaSettingsImagesItem: SchemaSettingsItemType = {
+export const imagesSchemaSettingsItem: SchemaSettingsItemType = {
   name: 'images',
   type: 'actionModal',
   useComponentProps() {
