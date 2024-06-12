@@ -2,11 +2,11 @@ import React from 'react';
 import { SchemaInitializerItemType, SchemaSettings, useSchemaInitializer } from '@nocobase/client'
 import { CodeOutlined } from '@ant-design/icons';
 
-export const InfoBlock3 = ({ children }) => {
+export const Info3 = ({ children }) => {
   return <div>{children}</div>
 }
 
-export const infoBlockSettings = new SchemaSettings({
+export const infoSettings = new SchemaSettings({
   name: 'blockSettings:info3',
   items: [
     {
@@ -22,7 +22,7 @@ export const infoBlockSettings = new SchemaSettings({
   ]
 })
 
-function getInfoBlockSchema({ dataSource, collection }) {
+function getInfoSchema({ dataSource, collection }) {
   return {
     type: 'void',
     'x-decorator': 'DataBlockProvider',
@@ -31,12 +31,12 @@ function getInfoBlockSchema({ dataSource, collection }) {
       collection,
       action: 'list',
     },
-    'x-settings': infoBlockSettings.name,
+    'x-settings': infoSettings.name,
     'x-component': 'CardItem',
     properties: {
       info: {
         type: 'void',
-        'x-component': 'InfoBlock3',
+        'x-component': 'Info3',
         properties: {
           fields: {
             type: 'void',
@@ -49,8 +49,8 @@ function getInfoBlockSchema({ dataSource, collection }) {
   }
 }
 
-export const infoBlockInitializerItem: SchemaInitializerItemType = {
-  name: 'InfoBlock3',
+export const infoInitializerItem: SchemaInitializerItemType = {
+  name: 'Info3',
   Component: 'DataBlockInitializer',
   useComponentProps() {
     const { insert } = useSchemaInitializer();
@@ -59,7 +59,7 @@ export const infoBlockInitializerItem: SchemaInitializerItemType = {
       icon: <CodeOutlined />,
       componentType: 'Info3',
       onCreateBlockSchema({ item }) {
-        insert(getInfoBlockSchema({ dataSource: item.dataSource, collection: item.name }))
+        insert(getInfoSchema({ dataSource: item.dataSource, collection: item.name }))
       },
     };
   },

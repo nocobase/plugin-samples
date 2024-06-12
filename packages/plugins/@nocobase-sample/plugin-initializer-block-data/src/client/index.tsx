@@ -1,19 +1,20 @@
 import { Plugin } from '@nocobase/client';
-import { InfoBlock } from './InfoBlock';
-import { useInfoBlockProps } from './infoBlockSchema';
-import { infoBlockSettings } from './infoBlockSettings';
-import { infoBlockInitializerItem } from './infoBlockInitializerItem';
+
+import { Info } from './component';
+import { infoInitializerItem } from './initializer';
+import { useInfoProps } from './schema';
+import { infoSettings } from './settings';
 
 export class PluginDataBlockInitializerClient extends Plugin {
   async load() {
-    this.app.addComponents({ InfoBlock });
-    this.app.addScopes({ useInfoBlockProps });
+    this.app.addComponents({ Info });
+    this.app.addScopes({ useInfoProps });
 
-    this.app.schemaSettingsManager.add(infoBlockSettings);
+    this.app.schemaSettingsManager.add(infoSettings);
 
-    this.app.schemaInitializerManager.addItem('page:addBlock', `dataBlocks.${infoBlockInitializerItem.name}`, infoBlockInitializerItem)
-    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `dataBlocks.${infoBlockInitializerItem.name}`, infoBlockInitializerItem)
-    this.app.schemaInitializerManager.addItem('mobilePage:addBlock', `dataBlocks.${infoBlockInitializerItem.name}`, infoBlockInitializerItem)
+    this.app.schemaInitializerManager.addItem('page:addBlock', `dataBlocks.${infoInitializerItem.name}`, infoInitializerItem)
+    this.app.schemaInitializerManager.addItem('popup:addNew:addBlock', `dataBlocks.${infoInitializerItem.name}`, infoInitializerItem)
+    this.app.schemaInitializerManager.addItem('mobilePage:addBlock', `dataBlocks.${infoInitializerItem.name}`, infoInitializerItem)
   }
 }
 

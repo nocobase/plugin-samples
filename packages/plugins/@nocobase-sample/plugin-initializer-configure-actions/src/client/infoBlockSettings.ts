@@ -1,6 +1,6 @@
 import { SchemaSettings } from "@nocobase/client";
 
-export const infoBlockSettings = new SchemaSettings({
+export const infoSettings = new SchemaSettings({
   name: 'blockSettings:info',
   items: [
     {

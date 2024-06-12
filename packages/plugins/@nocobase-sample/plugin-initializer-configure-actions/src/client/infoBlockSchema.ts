@@ -1,8 +1,8 @@
 import { useCollection, useDataBlockRequest } from "@nocobase/client";
-import { infoBlockSettings } from "./infoBlockSettings";
-import { InfoBlockProps } from "./InfoBlock";
+import { infoSettings } from "./infoBlockSettings";
+import { InfoProps } from "./InfoBlock";
 
-export function useInfoBlockProps(): InfoBlockProps {
+export function useInfoProps(): InfoProps {
   const collection = useCollection();
   const { data, loading } = useDataBlockRequest<any[]>();
 
@@ -13,7 +13,7 @@ export function useInfoBlockProps(): InfoBlockProps {
   }
 }
 
-export function getInfoBlockSchema({ dataSource = 'main', collection }) {
+export function getInfoSchema({ dataSource = 'main', collection }) {
   return {
     type: 'void',
     'x-decorator': 'DataBlockProvider',
@@ -22,13 +22,13 @@ export function getInfoBlockSchema({ dataSource = 'main', collection }) {
       collection,
       action: 'list',
     },
-    'x-settings': infoBlockSettings.name,
+    'x-settings': infoSettings.name,
     'x-component': 'CardItem',
     properties: {
       info: {
         type: 'void',
-        'x-component': 'InfoBlock2',
-        'x-use-component-props': 'useInfoBlockProps',
+        'x-component': 'Info2',
+        'x-use-component-props': 'useInfoProps',
         properties: {
           actions: {
             type: 'void',

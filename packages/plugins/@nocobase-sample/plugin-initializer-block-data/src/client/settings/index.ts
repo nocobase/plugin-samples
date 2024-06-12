@@ -1,7 +1,8 @@
 import { SchemaSettings } from "@nocobase/client";
+import { BlockNameLowercase } from "../constants";
 
-export const infoBlockSettings = new SchemaSettings({
-  name: 'blockSettings:info',
+export const infoSettings = new SchemaSettings({
+  name: `blockSettings:${BlockNameLowercase}`,
   items: [
     {
       type: 'remove',
