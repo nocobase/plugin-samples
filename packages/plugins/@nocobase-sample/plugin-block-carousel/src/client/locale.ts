@@ -3,7 +3,7 @@ import pkg from './../../package.json';
 import { useTranslation } from 'react-i18next';
 
 export function useCarouselTranslation() {
-  return useTranslation(pkg.name, { nsMode: 'fallback' });
+  return useTranslation([pkg.name, 'client'], { nsMode: 'fallback' });
 }
 
 export function generateNTemplate(key: string) {
