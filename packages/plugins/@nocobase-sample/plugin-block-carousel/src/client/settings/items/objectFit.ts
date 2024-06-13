@@ -1,7 +1,7 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
 import { BlockNameLowercase } from "../../constants";
-import { useCarouselTranslation } from "../../locale";
+import { usePluginTranslation } from "../../locale";
 
 export const objectFitSchemaSettingsItem: SchemaSettingsItemType = {
   name: 'objectFit',
@@ -9,7 +9,7 @@ export const objectFitSchemaSettingsItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
-    const { t } = useCarouselTranslation();
+    const { t } = usePluginTranslation();
 
     return {
       title: t('Object Fit'),

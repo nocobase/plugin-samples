@@ -2,7 +2,7 @@ import React, { FC, useMemo } from "react";
 import { uid } from "@formily/shared";
 import { ISchema, useForm } from '@formily/react';
 import { ActionContextProvider, useActionContext, SchemaComponent, useApp, CollectionFieldOptions } from '@nocobase/client';
-import { useTimelineTranslation } from "../locale";
+import { usePluginTranslation } from "../locale";
 
 const useCloseActionProps = () => {
   const { setVisible } = useActionContext();
@@ -29,7 +29,7 @@ const useSubmitActionProps = (onSubmit: (values: TimelineConfigFormValues) => vo
   };
 };
 
-const createSchema = (fields: CollectionFieldOptions, { t }: ReturnType<typeof useTimelineTranslation>): ISchema => {
+const createSchema = (fields: CollectionFieldOptions, { t }: ReturnType<typeof usePluginTranslation>): ISchema => {
   return {
     type: 'void',
     name: uid(),
@@ -93,7 +93,7 @@ export interface TimelineConfigFormProps {
 
 export const TimelineInitializerConfigForm: FC<TimelineConfigFormProps> = ({ visible, setVisible, collection, dataSource, onSubmit }) => {
   const app = useApp();
-  const tt = useTimelineTranslation();
+  const tt = usePluginTranslation();
   const fields = useMemo(() => app.getCollectionManager(dataSource).getCollection(collection).getFields(), [collection, dataSource])
   const schema = useMemo(() => createSchema(fields, tt), [fields]);
 

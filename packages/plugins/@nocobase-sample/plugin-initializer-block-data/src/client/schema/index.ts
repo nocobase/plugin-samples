@@ -2,7 +2,7 @@ import { useCollection, useDataBlockRequest } from "@nocobase/client";
 
 import { infoSettings } from "../settings";
 import { InfoProps } from "../component";
-import { BlockNameLowercase } from "../constants";
+import { BlockName, BlockNameLowercase } from "../constants";
 
 export function useInfoProps(): InfoProps {
   const collection = useCollection();
@@ -29,7 +29,7 @@ export function getInfoSchema({ dataSource = 'main', collection }) {
     properties: {
       [BlockNameLowercase]: {
         type: 'void',
-        'x-component': 'Info',
+        'x-component': BlockName,
         'x-use-component-props': 'useInfoProps',
       }
     }

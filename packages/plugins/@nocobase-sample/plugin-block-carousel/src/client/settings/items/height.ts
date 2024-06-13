@@ -2,7 +2,7 @@ import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
 
 import { BlockNameLowercase } from "../../constants";
-import { useCarouselTranslation } from "../../locale";
+import { usePluginTranslation } from "../../locale";
 
 export const heightSchemaSettingsItem: SchemaSettingsItemType = {
   name: 'height',
@@ -10,7 +10,7 @@ export const heightSchemaSettingsItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
-    const { t } = useCarouselTranslation();
+    const { t } = usePluginTranslation();
 
     return {
       title: t('Edit Height'),

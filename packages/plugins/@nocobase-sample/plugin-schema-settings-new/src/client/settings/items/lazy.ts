@@ -1,6 +1,6 @@
 import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
-import { useImageTranslation } from "../../locale";
+import { usePluginTranslation } from "../../locale";
 import { BlockNameLowercase } from "../../constants";
 
 export const lazySchemaSettingsItem: SchemaSettingsItemType = {
@@ -9,7 +9,7 @@ export const lazySchemaSettingsItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
-    const { t } = useImageTranslation();
+    const { t } = usePluginTranslation();
 
     return {
       title: t('Lazy'),

@@ -1,12 +1,12 @@
 import { useFieldSchema } from '@formily/react';
 import { ISchema } from "@nocobase/client"
 import { documentActionSettings } from '../settings';
-import { useDocumentTranslation } from '../locale';
+import { usePluginTranslation } from '../locale';
 import { ActionName } from '../constants';
 
 export function useDocumentActionProps() {
   const fieldSchema = useFieldSchema();
-  const { t } = useDocumentTranslation();
+  const { t } = usePluginTranslation();
   return {
     title: t(ActionName),
     type: 'primary',

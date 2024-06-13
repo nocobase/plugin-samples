@@ -1,22 +1,17 @@
 import { ISchema } from "@nocobase/client"
 import { documentActionModalSettings } from "../settings"
-import { useOpenDocumentTranslation } from "../locale";
+import { generatePluginTranslationTemplate } from "../locale";
 import { ActionName } from "../constants";
-
-export function useOpenDocumentActionProps() {
-  const { t } = useOpenDocumentTranslation();
-  return {
-    title: t(ActionName),
-    type: 'primary'
-  }
-}
 
 export const createDocumentActionModalSchema = (blockComponent: string): ISchema => {
   return {
     type: 'void',
     'x-component': 'Action',
     'x-settings': documentActionModalSettings.name,
-    'x-use-component-props': 'useOpenDocumentActionProps',
+    title: generatePluginTranslationTemplate(ActionName),
+    'x-component-props': {
+      type: 'primary'
+    },
     properties: {
       drawer: {
         type: 'void',
