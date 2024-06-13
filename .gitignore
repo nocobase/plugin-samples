@@ -23,4 +23,6 @@ dist/
 /storage/playwright
 /storage/app.watch.ts
 /storage/tar
+/storage/uploads
+/storage/logs
 tsconfig.paths.json
