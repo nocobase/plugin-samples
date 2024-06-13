@@ -2,6 +2,8 @@ import React from 'react';
 import { SchemaInitializerItemType, useSchemaInitializer } from '@nocobase/client'
 import { CodeOutlined } from '@ant-design/icons';
 
+export * from './configureActions'
+
 import { getInfoSchema } from '../schema'
 import { usePluginTranslation } from '../locale';
 import { BlockName, BlockNameLowercase } from '../constants';

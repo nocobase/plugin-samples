@@ -1,20 +1,16 @@
 import { Plugin } from '@nocobase/client';
-
-import { configureActionsInitializer } from './configureActionsInitializer';
-import { customRefreshActionSettings } from './configureActionsInitializer/items/customRefreshAction/customRefreshActionSettings';
-
-import { Info2 } from './InfoBlock';
-import { infoInitializerItem } from './infoBlockInitializerItem';
-import { useInfoProps } from './infoBlockSchema';
-import { infoSettings } from './infoBlockSettings';
+import { infoInitializerItem, useCustomRefreshActionProps, configureActionsInitializer, customRefreshActionSettings } from './initializer';
+import { InfoV2 } from './component';
+import { useInfoProps } from './schema';
+import { infoSettings } from './settings';
 
 export class PluginInitializerConfigureActionsClient extends Plugin {
   async load() {
     this.app.schemaInitializerManager.add(configureActionsInitializer)
     this.app.schemaSettingsManager.add(customRefreshActionSettings);
 
-    this.app.addComponents({ Info2 });
-    this.app.addScopes({ useInfoProps });
+    this.app.addComponents({ InfoV2 });
+    this.app.addScopes({ useInfoProps, useCustomRefreshActionProps });
 
     this.app.schemaSettingsManager.add(infoSettings);
 
