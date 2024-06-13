@@ -7,21 +7,13 @@
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
-import { SelectProps, createSelectSchemaSettingsItem, useCollection, useCompile } from "@nocobase/client";
+import { createSelectSchemaSettingsItem } from "@nocobase/client";
 import { generateNTemplate } from "../../locale";
-
-function useOptions(): SelectProps['options'] {
-  const collection = useCollection();
-
-  const compile = useCompile();
-  return collection
-    .getFields()
-    .map(field => ({ label: field.uiSchema?.title ? compile(field.uiSchema.title) : field.name, value: field.name }));
-}
+import { useFieldOptions } from '../../initializer'
 
 export const orderFieldSchemaSettingsItem = createSelectSchemaSettingsItem({
-  name: 'titleField',
+  name: 'orderField',
   title: generateNTemplate('Order field'),
-  useOptions,
+  useOptions: useFieldOptions,
   schemaKey: `x-component-props.orderField`,
 });

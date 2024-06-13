@@ -1,6 +1,6 @@
 import { Plugin } from '@nocobase/server';
 
-export class PluginFieldOrderDetailsServer extends Plugin {
+export class PluginFieldComponentWithoutValueServer extends Plugin {
   async afterAdd() {}
 
   async beforeLoad() {}
@@ -16,4 +16,4 @@ export class PluginFieldOrderDetailsServer extends Plugin {
   async remove() {}
 }
 
-export default PluginFieldOrderDetailsServer;
+export default PluginFieldComponentWithoutValueServer;
