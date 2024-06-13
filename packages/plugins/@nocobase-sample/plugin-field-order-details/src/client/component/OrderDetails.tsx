@@ -1,9 +1,8 @@
-import { observer } from '@formily/react'
-import { Spin, Empty } from 'antd';
-import React, { FC } from 'react';
-import { useForm } from '@formily/react';
-import { FiledComponentName } from '../constants';
+import { observer, useForm } from '@formily/react';
 import { useRequest } from '@nocobase/client';
+import { Empty, Spin } from 'antd';
+import React, { FC } from 'react';
+import { FiledComponentName } from '../constants';
 
 export interface OrderDetailsProps {
   orderField?: string;
@@ -13,7 +12,7 @@ export const OrderDetails: FC<OrderDetailsProps> = observer(({ orderField }) => 
   const form = useForm();
   const value = orderField ? form.values[orderField] : undefined;
 
-  const { data, loading } = useRequest<{ data: any[] }>({ url: `users:get/${value}` }, {
+  const { data, loading } = useRequest<{ data: any[] }>({ url: `remoteData:get/${value}` }, {
     ready: !!orderField,
     refreshDeps: [orderField, value],
   })
