@@ -1,5 +1,5 @@
 import React from "react";
-// import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 import { SchemaInitializerActionModal, SchemaInitializerItemType, SelectProps, useCollection, useCompile, useSchemaInitializer } from "@nocobase/client"
 
 import { FieldNameLowercase } from "../constants";
@@ -21,7 +21,7 @@ const OrderDetailsSchemaInitializer = () => {
   const options = useFieldOptions();
   return <SchemaInitializerActionModal
     buttonText={t("Order Details")}
-    // icon={<MenuOutlined />}
+    icon={<MenuOutlined />}
     title={t("Select Order Field")}
     isItem
     onSubmit={({ orderField }) => {
