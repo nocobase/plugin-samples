@@ -1,8 +1,9 @@
-import { observer, useForm } from '@formily/react';
-import { useRequest } from '@nocobase/client';
-import { Empty, Spin } from 'antd';
+import { observer } from '@formily/react'
+import { Spin, Empty } from 'antd';
 import React, { FC } from 'react';
-import { FiledComponentName } from '../constants';
+import { useForm } from '@formily/react';
+import { FieldComponentName } from '../constants';
+import { useRequest } from '@nocobase/client';
 
 export interface OrderDetailsProps {
   orderField?: string;
@@ -17,7 +18,7 @@ export const OrderDetails: FC<OrderDetailsProps> = observer(({ orderField }) => 
     refreshDeps: [orderField, value],
   })
 
-  if (!orderField) return <div style={{ padding: 20 }}>请先选择 Order Field</div>
+  if (!orderField) return <div style={{ padding: 20 }}>Please select order Field</div>
 
   if (loading) {
     return <div style={{ textAlign: 'center', height: 200 }}><Spin /></div>
@@ -26,4 +27,4 @@ export const OrderDetails: FC<OrderDetailsProps> = observer(({ orderField }) => 
   if (!data?.data) return <Empty />;
 
   return <pre>{JSON.stringify(data?.data, null, 2)}</pre>;
-}, { displayName: FiledComponentName });
+}, { displayName: FieldComponentName });
