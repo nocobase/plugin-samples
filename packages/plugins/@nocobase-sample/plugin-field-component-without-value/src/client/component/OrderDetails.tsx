@@ -13,7 +13,7 @@ export const OrderDetails: FC<OrderDetailsProps> = observer(({ orderField }) => 
   const form = useForm();
   const value = orderField ? form.values[orderField] : undefined;
 
-  const { data, loading } = useRequest<{ data: any[] }>({ url: `users:get/${value}` }, {
+  const { data, loading } = useRequest<{ data: any[] }>({ url: `remoteData:get/${value}` }, {
     ready: !!orderField,
     refreshDeps: [orderField, value],
   })

@@ -5,7 +5,9 @@ export class PluginFieldComponentWithoutValueServer extends Plugin {
 
   async beforeLoad() {}
 
-  async load() {}
+  async load() {
+
+  }
 
   async install() {}
 
