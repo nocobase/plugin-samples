@@ -8,12 +8,12 @@
  */
 
 import { createSelectSchemaSettingsItem } from "@nocobase/client";
-import { generateNTemplate } from "../../locale";
+import { generatePluginTranslationTemplate } from "../../locale";
 import { useFieldOptions } from '../../initializer'
 
 export const orderFieldSchemaSettingsItem = createSelectSchemaSettingsItem({
   name: 'orderField',
-  title: generateNTemplate('Order field'),
+  title: generatePluginTranslationTemplate('Order field'),
   useOptions: useFieldOptions,
   schemaKey: `x-component-props.orderField`,
 });
