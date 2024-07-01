@@ -7,10 +7,6 @@ export function usePluginTranslation() {
   return useTranslation([pkg.name, 'client'], { nsMode: 'fallback' });
 }
 
-export function generateNTemplate(key: string) {
+export function generatePluginTranslationTemplate(key: string) {
   return `{{t('${key}', { ns: '${pkg.name}', nsMode: 'fallback' })}}`;
-}
-
-export function generateCommonTemplate(key: string) {
-  return `{{t('${key}')}}`;
 }
