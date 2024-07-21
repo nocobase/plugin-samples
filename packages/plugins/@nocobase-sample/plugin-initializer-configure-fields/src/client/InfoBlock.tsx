@@ -32,6 +32,7 @@ function getInfoSchema({ dataSource, collection }) {
       action: 'list',
     },
     'x-settings': infoSettings.name,
+    "x-toolbar": "BlockSchemaToolbar",
     'x-component': 'CardItem',
     properties: {
       info: {

@@ -14,8 +14,9 @@ export function getTimelineSchema(options: GetTimelineSchemaOptions) {
   const { dataSource, collection, titleField, timeField } = options;
   return {
     type: 'void',
-    'x-decorator': 'DataBlockProvider',
+    "x-toolbar": "BlockSchemaToolbar",
     'x-settings': timelineSettings.name,
+    'x-decorator': 'DataBlockProvider',
     'x-decorator-props': {
       dataSource,
       collection,
