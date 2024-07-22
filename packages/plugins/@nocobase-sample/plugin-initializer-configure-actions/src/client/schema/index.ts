@@ -26,6 +26,7 @@ export function getInfoSchema({ dataSource = 'main', collection }) {
       action: 'list',
     },
     'x-settings': infoSettings.name,
+    "x-toolbar": "BlockSchemaToolbar",
     'x-component': 'CardItem',
     properties: {
       [BlockNameLowercase]: {

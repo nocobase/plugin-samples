@@ -7,8 +7,8 @@ import { useFormV3Props, getFormV3Schema } from './FormV3.schema';
 import { formV3Settings } from './FormV3.settings';
 import { formV3InitializerItem } from './FormV3.initializer';
 import { formV3ConfigureActionsInitializer } from './FormV3.configActions';
-import { formV3SubmitActionSettings } from './FormV3.configActions/items/submit';
-import { formItemItemSettings } from './FormV3.configFields/items/fields/settings';
+import { formV3SubmitActionSettings, useFormV3SubmitActionProps } from './FormV3.configActions/items/submit';
+import { formV3ConfigureFieldsInitializer } from './FormV3.configFields';
 
 function useSubmitActionProps(): ActionProps {
   const form = useForm();
@@ -27,12 +27,10 @@ function useSubmitActionProps(): ActionProps {
 export class PluginBlockFormClient extends Plugin {
   async load() {
     this.app.addComponents({ FormV3 });
-    this.app.addScopes({ useFormV3Props });
-    this.app.schemaSettingsManager.add(formV3Settings, formV3SubmitActionSettings, formItemItemSettings);
-    this.app.schemaInitializerManager.add(formV3ConfigureActionsInitializer);
-
+    this.app.addScopes({ useFormV3Props, useFormV3SubmitActionProps });
     this.app.schemaInitializerManager.addItem('page:addBlock', `dataBlocks.${formV3InitializerItem.name}`, formV3InitializerItem);
-
+    this.app.schemaSettingsManager.add(formV3Settings, formV3SubmitActionSettings);
+    this.app.schemaInitializerManager.add(formV3ConfigureActionsInitializer, formV3ConfigureFieldsInitializer);
 
     this.app.router.add('admin.block-form-component', {
       path: '/admin/block-form-component',

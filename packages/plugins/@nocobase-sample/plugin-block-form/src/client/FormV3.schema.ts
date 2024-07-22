@@ -4,12 +4,12 @@ import { FormV3BlockName, FormV3BlockNameLowercase } from "./constants";
 import { FormV3Props } from "./FormV3";
 import { formV3Settings } from "./FormV3.settings";
 import { formV3ConfigureActionsInitializer } from "./FormV3.configActions";
+import { formV3ConfigureFieldsInitializer } from "./FormV3.configFields";
 
 export function useFormV3Props(): FormV3Props {
   const blockProps = useDataBlockProps();
   return blockProps[FormV3BlockNameLowercase];
 }
-
 
 interface GetFormV3SchemaOptions {
   dataSource?: string;
@@ -26,17 +26,22 @@ export function getFormV3Schema(options: GetFormV3SchemaOptions): ISchema {
     'x-decorator-props': {
       dataSource,
       collection,
-      action: 'list',
       [FormV3BlockNameLowercase]: {},
     },
     'x-settings': formV3Settings.name,
+    "x-toolbar": "BlockSchemaToolbar",
     properties: {
       [FormV3BlockNameLowercase]: {
         type: 'void',
         'x-component': FormV3BlockName,
-        'x-use-component-props': useFormV3Props.name,
+        'x-use-component-props': 'useFormV3Props',
         properties: {
           ...properties as any,
+          fields: {
+            "type": "void",
+            "x-component": "Grid",
+            "x-initializer": formV3ConfigureFieldsInitializer.name
+          },
           actionBar: {
             type: 'void',
             "x-initializer": formV3ConfigureActionsInitializer.name,

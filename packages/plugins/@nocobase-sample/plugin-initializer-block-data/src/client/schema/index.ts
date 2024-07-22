@@ -19,6 +19,7 @@ export function getInfoSchema({ dataSource = 'main', collection }) {
   return {
     type: 'void',
     'x-decorator': 'DataBlockProvider',
+    "x-toolbar": "BlockSchemaToolbar",
     'x-decorator-props': {
       dataSource,
       collection,

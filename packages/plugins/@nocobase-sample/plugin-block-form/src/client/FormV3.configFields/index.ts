@@ -1,33 +1,16 @@
-import { useFieldSchema } from '@formily/react'
-import { SchemaInitializer, SchemaInitializerItemType, useCollection, useDesignable, useSchemaInitializer } from "@nocobase/client";
+import { CollectionFieldsToFormInitializerItems, gridRowColWrap, SchemaInitializer } from "@nocobase/client";
 import { FormV3BlockNameLowercase } from '../constants';
+import { generatePluginTranslationTemplate } from '../locale'
 
-export const configureFields = new SchemaInitializer({
+export const formV3ConfigureFieldsInitializer = new SchemaInitializer({
   name: `${FormV3BlockNameLowercase}:configureFields`,
   icon: 'SettingOutlined',
-  title: 'Configure fields',
+  wrap: gridRowColWrap,
+  title: generatePluginTranslationTemplate('Configure fields'),
   items: [
     {
-      type: 'itemGroup',
-      name: 'fields',
-      title: 'Display fields',
-      useChildren() {
-        const { insert } = useSchemaInitializer();
-        const { remove } = useDesignable();
-        const schema = useFieldSchema();
-        const collection = useCollection();
-        // const schemaItems = collection
-        //   .getFields()
-        //   .map<SchemaInitializerItemType>((collectionField) => getFieldInitializerItem({
-        //     collectionField,
-        //     schema,
-        //     remove,
-        //     insert
-        //   }))
-
-        // return schemaItems;
-        return [];
-      },
+      name: 'collectionFields',
+      Component: CollectionFieldsToFormInitializerItems,
     },
     {
       name: 'divider',
@@ -35,7 +18,7 @@ export const configureFields = new SchemaInitializer({
     },
     {
       name: 'addText',
-      title: 'Add text',
+      title: generatePluginTranslationTemplate('Add text'),
       Component: 'MarkdownFormItemInitializer',
     },
   ]
