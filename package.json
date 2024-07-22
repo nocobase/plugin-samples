@@ -27,10 +27,10 @@
     "@types/react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@nocobase/cli": "^1.2.4-alpha",
+    "@nocobase/cli": "^1.2.23-alpha",
     "sqlite3": "^5.0.8"
   },
   "devDependencies": {
-    "@nocobase/devtools": "^1.2.4-alpha"
+    "@nocobase/devtools": "^1.2.23-alpha"
   }
 }
