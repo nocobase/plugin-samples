@@ -13,8 +13,8 @@ export const OrderDetails: FC<OrderDetailsProps> = observer(({ orderField }) => 
   const form = useForm();
   const value = orderField ? form.values[orderField] : undefined;
 
-  const { data, loading } = useRequest<{ data: any[] }>({ url: `remoteData:get/${value}` }, {
-    ready: !!orderField,
+  const { data, loading } = useRequest<{ data: any[] }>({ url: `https://jsonplaceholder.typicode.com/todos/${value}` }, {
+    ready: !!value,
     refreshDeps: [orderField, value],
   })
 
@@ -24,7 +24,7 @@ export const OrderDetails: FC<OrderDetailsProps> = observer(({ orderField }) => 
     return <div style={{ textAlign: 'center', height: 200 }}><Spin /></div>
   }
 
-  if (!data?.data) return <Empty />;
+  if (!data) return <Empty />;
 
-  return <pre>{JSON.stringify(data?.data, null, 2)}</pre>;
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }, { displayName: FieldComponentName });
