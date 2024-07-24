@@ -8,8 +8,7 @@ interface QRCodeProps extends AntdQRCodeProps {
   disabled?: boolean;
 }
 
-const EditQRCode: FC<QRCodeProps> = ({ value, disabled, onChange, ...otherProps }) => {
-  console.log('EditQRCode', otherProps);
+const EditableQRCode: FC<QRCodeProps> = ({ value, disabled, onChange, ...otherProps }) => {
   return <Space direction="vertical" align="center">
     <AntdQRCode value={value || '-'} {...otherProps} />
     <Input.URL
@@ -28,8 +27,8 @@ const ReadPrettyQrCode: FC<QRCodeProps> = ({ value, ...otherProps }) => {
 
 export const QRCode: FC<QRCodeProps> & {
   ReadPretty: typeof ReadPrettyQrCode;
-} = Object.assign(connect(EditQRCode, mapReadPretty(ReadPrettyQrCode)),
-  {
+} = Object.assign(connect(EditableQRCode, mapReadPretty(ReadPrettyQrCode)), {
     ReadPretty: ReadPrettyQrCode,
-  }
-)
+})
+
+QRCode.displayName = 'QRCode'
