@@ -8,7 +8,7 @@ export class PluginFieldComponentValueClient extends Plugin {
   async load() {
     this.app.addComponents({ QRCode });
     this.schemaSettingsManager.add(qrCodeComponentFieldSettings);
-    this.dataSourceManager.collectionFieldInterfaceManager.addFieldInterfaceComponentOption('url', {
+    this.app.addFieldInterfaceComponentOption('url', {
       label: generatePluginTranslationTemplate('QRCode'),
       value: 'QRCode',
     });
