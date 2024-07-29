@@ -2,7 +2,7 @@ import { useForm } from '@formily/react';
 import { App } from 'antd';
 import { ActionProps, useDataBlockResource } from "@nocobase/client";
 import { formV3SubmitActionSettings } from './settings';
-import { generatePluginTranslationTemplate } from '../../../locale'
+import { tStr } from '../../../locale'
 
 export const useFormV3SubmitActionProps = (): ActionProps => {
   const resource = useDataBlockResource();
@@ -23,7 +23,7 @@ export const useFormV3SubmitActionProps = (): ActionProps => {
 
 export const submitActionSchema = {
   type: 'void',
-  title: generatePluginTranslationTemplate('Submit'),
+  title: tStr('Submit'),
   'x-component': 'Action',
   'x-settings': formV3SubmitActionSettings.name,
   'x-use-component-props': 'useFormV3SubmitActionProps',

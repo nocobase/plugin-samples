@@ -2,12 +2,12 @@
 import { SchemaInitializer } from "@nocobase/client";
 import { FormV3BlockNameLowercase } from "../constants";
 import { submitActionInitializerItem } from "./items/submit";
-import { generatePluginTranslationTemplate } from '../locale'
+import { tStr } from '../locale'
 
 export const formV3ConfigureActionsInitializer = new SchemaInitializer({
   name: `${FormV3BlockNameLowercase}:configureActions`,
   icon: 'SettingOutlined',
-  title: generatePluginTranslationTemplate('Configure actions'),
+  title: tStr('Configure actions'),
   style: {
     marginLeft: 8,
   },
@@ -15,7 +15,7 @@ export const formV3ConfigureActionsInitializer = new SchemaInitializer({
     submitActionInitializerItem,
     {
       name: 'customRequest',
-      title: generatePluginTranslationTemplate('Custom request'),
+      title: tStr('Custom request'),
       Component: 'CustomRequestInitializer',
     },
   ]

@@ -1,6 +1,6 @@
 import { ISchema } from "@nocobase/client"
 import { documentActionModalSettings } from "../settings"
-import { generatePluginTranslationTemplate } from "../locale";
+import { tStr } from "../locale";
 import { ActionName } from "../constants";
 
 export const createDocumentActionModalSchema = (blockComponent: string): ISchema => {
@@ -8,7 +8,7 @@ export const createDocumentActionModalSchema = (blockComponent: string): ISchema
     type: 'void',
     'x-component': 'Action',
     'x-settings': documentActionModalSettings.name,
-    title: generatePluginTranslationTemplate(ActionName),
+    title: tStr(ActionName),
     'x-component-props': {
       type: 'primary'
     },

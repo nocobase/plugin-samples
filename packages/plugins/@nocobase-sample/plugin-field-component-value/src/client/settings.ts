@@ -1,17 +1,17 @@
 import { createModalSettingsItem, createSelectSchemaSettingsItem, createSwitchSettingsItem, SchemaSettings } from "@nocobase/client";
 
-import { generatePluginTranslationTemplate, usePluginTranslation } from './locale';
+import { tStr, useT } from './locale';
 
 export const qrCodeComponentFieldSettings = new SchemaSettings({
   name: 'fieldSettings:component:QRCode',
   items: [
     createSelectSchemaSettingsItem({
       name: 'size',
-      title: generatePluginTranslationTemplate('Size'),
+      title: tStr('Size'),
       schemaKey: 'x-component-props.size',
       defaultValue: 160,
       useOptions() {
-        const { t } = usePluginTranslation();
+        const t = useT();
         return [
           {
             label: t('Small'),
@@ -31,21 +31,21 @@ export const qrCodeComponentFieldSettings = new SchemaSettings({
     createSwitchSettingsItem({
       name: 'bordered',
       schemaKey: 'x-component-props.bordered',
-      title: generatePluginTranslationTemplate('Bordered'),
+      title: tStr('Bordered'),
       defaultValue: true,
     }),
     createModalSettingsItem({
       name: 'color',
-      title: generatePluginTranslationTemplate('Color'),
+      title: tStr('Color'),
       parentSchemaKey: 'x-component-props',
       schema({ color }) {
         return {
           type: 'object',
-          title: generatePluginTranslationTemplate('Color'),
+          title: tStr('Color'),
           properties: {
             color: {
               type: 'string',
-              title: generatePluginTranslationTemplate('Color'),
+              title: tStr('Color'),
               default: color,
               'x-component': 'ColorPicker',
             }

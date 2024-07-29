@@ -1,10 +1,10 @@
 import { ActionProps, useDataBlockRequest, ISchema } from "@nocobase/client";
 import { customRefreshActionSettings } from "./settings";
-import { usePluginTranslation } from "../../../../locale";
+import { useT } from "../../../../locale";
 
 export const useCustomRefreshActionProps = (): ActionProps => {
   const { runAsync } = useDataBlockRequest();
-  const { t } = usePluginTranslation();
+  const t = useT();
   return {
     type: 'primary',
     title: t('Custom Refresh'),

@@ -1,6 +1,6 @@
 import { SchemaInitializerItemType, useSchemaInitializer } from "@nocobase/client"
 
-import { usePluginTranslation } from "../locale";
+import { useT } from "../locale";
 import { createDocumentActionModalSchema } from '../schema';
 import { ActionName, ActionNameLowercase } from "../constants";
 
@@ -10,7 +10,7 @@ export const createDocumentActionModalInitializerItem = (blockComponent: string)
   name: ActionNameLowercase,
   useComponentProps() {
     const { insert } = useSchemaInitializer();
-    const { t } = usePluginTranslation();
+    const t = useT();
     return {
       title: t(ActionName),
       onClick: () => {

@@ -3,7 +3,7 @@ import { SchemaInitializerItemType, useSchemaInitializer } from '@nocobase/clien
 import { CodeOutlined } from '@ant-design/icons';
 
 import { getInfoSchema } from '../schema'
-import { usePluginTranslation } from '../locale';
+import { useT } from '../locale';
 import { BlockName, BlockNameLowercase } from '../constants';
 
 export const infoInitializerItem: SchemaInitializerItemType = {
@@ -11,12 +11,12 @@ export const infoInitializerItem: SchemaInitializerItemType = {
   Component: 'DataBlockInitializer',
   useComponentProps() {
     const { insert } = useSchemaInitializer();
-    const { t } = usePluginTranslation();
+    const t = useT();
     return {
       title: t(BlockName),
       icon: <CodeOutlined />,
       componentType: BlockName,
-      useTranslationHooks: usePluginTranslation,
+      useTranslationHooks: useT,
       onCreateBlockSchema({ item }) {
         insert(getInfoSchema({ dataSource: item.dataSource, collection: item.name }))
       },
