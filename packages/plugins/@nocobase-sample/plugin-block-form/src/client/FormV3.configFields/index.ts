@@ -1,12 +1,12 @@
 import { CollectionFieldsToFormInitializerItems, gridRowColWrap, SchemaInitializer } from "@nocobase/client";
 import { FormV3BlockNameLowercase } from '../constants';
-import { generatePluginTranslationTemplate } from '../locale'
+import { tStr } from '../locale'
 
 export const formV3ConfigureFieldsInitializer = new SchemaInitializer({
   name: `${FormV3BlockNameLowercase}:configureFields`,
   icon: 'SettingOutlined',
   wrap: gridRowColWrap,
-  title: generatePluginTranslationTemplate('Configure fields'),
+  title: tStr('Configure fields'),
   items: [
     {
       name: 'collectionFields',
@@ -18,7 +18,7 @@ export const formV3ConfigureFieldsInitializer = new SchemaInitializer({
     },
     {
       name: 'addText',
-      title: generatePluginTranslationTemplate('Add text'),
+      title: tStr('Add text'),
       Component: 'MarkdownFormItemInitializer',
     },
   ]

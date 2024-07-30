@@ -3,7 +3,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import { SchemaInitializerActionModal, SchemaInitializerItemType, SelectProps, useCollection, useCompile, useSchemaInitializer } from "@nocobase/client"
 
 import { FieldNameLowercase } from "../constants";
-import { usePluginTranslation } from "../locale";
+import { useT } from "../locale";
 import { getOrderDetailsSchema } from '../schema'
 
 export function useFieldOptions(): SelectProps['options'] {
@@ -16,7 +16,7 @@ export function useFieldOptions(): SelectProps['options'] {
 }
 
 const OrderDetailsSchemaInitializer = () => {
-  const { t } = usePluginTranslation();
+  const t = useT();
   const { insert, setVisible } = useSchemaInitializer();
   const options = useFieldOptions();
   return <SchemaInitializerActionModal

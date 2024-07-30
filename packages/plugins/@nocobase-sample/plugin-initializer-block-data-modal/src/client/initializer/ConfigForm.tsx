@@ -2,7 +2,7 @@ import React, { FC, useMemo } from "react";
 import { uid } from "@formily/shared";
 import { ISchema, useForm } from '@formily/react';
 import { ActionContextProvider, useActionContext, SchemaComponent, useApp, CollectionFieldOptions } from '@nocobase/client';
-import { usePluginTranslation } from "../locale";
+import { useT } from "../locale";
 
 const useCloseActionProps = () => {
   const { setVisible } = useActionContext();
@@ -29,7 +29,7 @@ const useSubmitActionProps = (onSubmit: (values: TimelineConfigFormValues) => vo
   };
 };
 
-const createSchema = (fields: CollectionFieldOptions, { t }: ReturnType<typeof usePluginTranslation>): ISchema => {
+const createSchema = (fields: CollectionFieldOptions, t: ReturnType<typeof useT>): ISchema => {
   return {
     type: 'void',
     name: uid(),
@@ -93,9 +93,9 @@ export interface TimelineConfigFormProps {
 
 export const TimelineInitializerConfigForm: FC<TimelineConfigFormProps> = ({ visible, setVisible, collection, dataSource, onSubmit }) => {
   const app = useApp();
-  const tt = usePluginTranslation();
+  const t = useT();
   const fields = useMemo(() => app.getCollectionManager(dataSource).getCollection(collection).getFields(), [collection, dataSource])
-  const schema = useMemo(() => createSchema(fields, tt), [fields]);
+  const schema = useMemo(() => createSchema(fields, t), [fields]);
 
   return <ActionContextProvider value={{ visible, setVisible }}>
     <SchemaComponent schema={schema} scope={{ useSubmitActionProps: useSubmitActionProps.bind(null, onSubmit), useCloseActionProps }} />

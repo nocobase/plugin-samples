@@ -1,11 +1,11 @@
 import { SchemaInitializerItemType, useSchemaInitializer } from "@nocobase/client";
 import { submitActionSchema } from "./schema";
-import { generatePluginTranslationTemplate } from '../../../locale';
+import { tStr } from '../../../locale';
 
 export const submitActionInitializerItem: SchemaInitializerItemType = {
   type: 'item',
   name: 'submit',
-  title: generatePluginTranslationTemplate('Submit'),
+  title: tStr('Submit'),
   useComponentProps() {
     const { insert } = useSchemaInitializer();
     return {

@@ -3,7 +3,7 @@ import { FieldTimeOutlined } from '@ant-design/icons';
 import { DataBlockInitializer, SchemaInitializerItemType, useSchemaInitializer } from "@nocobase/client";
 
 import { getTimelineSchema } from '../schema';
-import { usePluginTranslation } from '../locale';
+import { useT } from '../locale';
 import { TimelineConfigFormProps, TimelineInitializerConfigForm } from './ConfigForm';
 import { BlockName, BlockNameLowercase } from '../constants';
 
@@ -12,7 +12,7 @@ export const TimelineInitializerComponent = () => {
   const [collection, setCollection] = useState<string>();
   const [dataSource, setDataSource] = useState<string>();
   const [showConfigForm, setShowConfigForm] = useState(false);
-  const { t } = usePluginTranslation()
+  const t = useT()
 
   const onSubmit: TimelineConfigFormProps['onSubmit'] = useCallback((values) => {
     const schema = getTimelineSchema({ collection, dataSource, timeField: values.timeField, titleField: values.titleField });

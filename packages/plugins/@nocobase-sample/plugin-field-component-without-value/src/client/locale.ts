@@ -1,12 +1,13 @@
-import { useTranslation } from 'react-i18next';
+import { useApp } from '@nocobase/client';
 
 // @ts-ignore
 import pkg from './../../package.json';
 
-export function usePluginTranslation() {
-  return useTranslation([pkg.name, 'client'], { nsMode: 'fallback' });
+export function useT() {
+  const app = useApp();
+  return (str: string) => app.i18n.t(str, { ns: pkg.name });
 }
 
-export function generatePluginTranslationTemplate(key: string) {
+export function tStr(key: string) {
   return `{{t('${key}', { ns: '${pkg.name}', nsMode: 'fallback' })}}`;
 }

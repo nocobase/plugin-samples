@@ -1,13 +1,13 @@
 import { CollectionFieldInterface, defaultProps } from '@nocobase/client';
 import { uid } from '@nocobase/utils/client';
-import { generatePluginTranslationTemplate } from './locale';
+import { tStr } from './locale';
 
 export class EncryptionFieldInterface extends CollectionFieldInterface {
   name = 'encryption';
   type = 'object';
   group = 'advanced';
   order = 10;
-  title = generatePluginTranslationTemplate('Encryption');
+  title = tStr('Encryption');
   default = {
     type: 'encryption',
     iv: uid(16),

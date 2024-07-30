@@ -2,7 +2,7 @@ import { SchemaSettingsItemType, useDesignable, } from "@nocobase/client";
 import { useFieldSchema } from '@formily/react';
 
 import { BlockNameLowercase } from "../../constants";
-import { usePluginTranslation } from "../../locale";
+import { useT } from "../../locale";
 
 export const autoplaySchemaSettingsItem: SchemaSettingsItemType = {
   name: 'autoplay',
@@ -10,7 +10,7 @@ export const autoplaySchemaSettingsItem: SchemaSettingsItemType = {
   useComponentProps() {
     const filedSchema = useFieldSchema();
     const { deepMerge } = useDesignable();
-    const { t } = usePluginTranslation();
+    const t = useT();
 
     return {
       title: t('Autoplay'),

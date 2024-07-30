@@ -2,7 +2,7 @@ import { SchemaInitializerItemType, useSchemaInitializer } from '@nocobase/clien
 
 import { carouselSchema } from '../schema';
 import { BlockName, BlockNameLowercase } from '../constants';
-import { usePluginTranslation } from '../locale';
+import { useT } from '../locale';
 
 export const carouselInitializerItem: SchemaInitializerItemType = {
   type: 'item',
@@ -10,7 +10,7 @@ export const carouselInitializerItem: SchemaInitializerItemType = {
   icon: 'PlayCircleOutlined',
   useComponentProps() {
     const { insert } = useSchemaInitializer();
-    const { t } = usePluginTranslation();
+    const t = useT();
     return {
       title: t(BlockName),
       onClick: () => {
